@@ -3,6 +3,7 @@
         "vue.vscode-typescript-vue-plugin",
         "vue.volar",
         "dbaeumer.vscode-eslint",
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "stylelint.vscode-stylelint"
     ]
 }
