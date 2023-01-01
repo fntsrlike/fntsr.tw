@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   extends: [
     '@nuxtjs/eslint-config-typescript',
@@ -10,7 +10,7 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 13,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['prettier'],
   rules: {
@@ -22,11 +22,11 @@ module.exports = {
         '**/pages/**/*.{js,ts,vue}',
         '**/layouts/**/*.{js,ts,vue}',
         '**/app.{js,ts,vue}',
-        '**/error.{js,ts,vue}'
+        '**/error.{js,ts,vue}',
       ],
       rules: {
-        'vue/multi-word-component-names': 'off'
-      }
-    }
-  ]
+        'vue/multi-word-component-names': 'off',
+      },
+    },
+  ],
 }
