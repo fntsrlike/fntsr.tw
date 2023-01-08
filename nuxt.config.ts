@@ -8,5 +8,17 @@ export default defineNuxtConfig({
   },
   content: {
     // https://content.nuxtjs.org/api/configuration
+
+    highlight: {
+      // Theme used in all color schemes.
+      preload: [
+        'javascript',
+        'typescript',
+        'vue',
+        'vue-html',
+        'ruby',
+        'mermaid',
+      ],
+    },
   },
 })
