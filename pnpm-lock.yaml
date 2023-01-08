@@ -1,5 +1,10 @@
 lockfileVersion: 5.4
 
+patchedDependencies:
+  shiki-es@0.1.2:
+    hash: 5r2fjgcguydatqlmwc4snekmmm
+    path: patches/shiki-es@0.1.2.patch
+
 specifiers:
   '@nuxt/content': ^2.3.0
   '@nuxtjs/eslint-config-typescript': ^12.0.0
@@ -544,7 +549,7 @@ packages:
       remark-rehype: 10.1.0
       remark-squeeze-paragraphs: 5.0.1
       scule: 1.0.0
-      shiki-es: 0.1.2
+      shiki-es: 0.1.2_5r2fjgcguydatqlmwc4snekmmm
       slugify: 1.6.5
       socket.io-client: 4.5.4
       ufo: 1.0.1
@@ -7146,9 +7151,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /shiki-es/0.1.2:
+  /shiki-es/0.1.2_5r2fjgcguydatqlmwc4snekmmm:
     resolution: {integrity: sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==}
     dev: true
+    patched: true
 
   /side-channel/1.0.4:
     resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
