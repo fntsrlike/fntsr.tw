@@ -1,3 +1,7 @@
+<template>
+  <slot />
+</template>
+
 <script setup>
 import mermaid from 'mermaid'
 mermaid.initialize({
