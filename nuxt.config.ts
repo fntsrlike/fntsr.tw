@@ -20,5 +20,8 @@ export default defineNuxtConfig({
         'mermaid',
       ],
     },
+    markdown: {
+      remarkPlugins: ['remark-breaks'],
+    },
   },
 })
