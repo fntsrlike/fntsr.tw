@@ -1,4 +1,4 @@
-This a test of all markdown possibilities:
+# This a test of all markdown possibilities:
 
 ------------------------------------------
 

@@ -8,17 +8,6 @@ console.log('Hello, JavaScript')
 console.log 'Hello, TypeScript'
 ```
 
-```ruby
-puts "Hello, Ruby"
-```
-
-```mermaid
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice-)John: See you later!
-```
-
 ```vue
 <script>
 export default {
@@ -39,4 +28,15 @@ button {
   font-weight: bold;
 }
 </style>
+```
+
+```ruby
+puts "Hello, Ruby"
+```
+
+```mermaid
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
 ```
