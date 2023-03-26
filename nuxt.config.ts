@@ -1,5 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: '深藏若虛',
+      meta: [{ name: 'description', content: 'My amazing site.' }],
+      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    },
+  },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
   typescript: {
     shim: false,
