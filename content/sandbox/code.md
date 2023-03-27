@@ -1,3 +1,7 @@
+---
+title: 'Code Sample'
+---
+
 # Code Higihting Style Test
 
 ```javascript

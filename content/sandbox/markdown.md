@@ -1,3 +1,7 @@
+---
+title: 'Markdown Sample'
+---
+
 # This a test of all markdown possibilities:
 
 ------------------------------------------
