@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     head: {
       title: '深藏若虛',
       meta: [{ name: 'description', content: 'My amazing site.' }],
-      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
