@@ -1,3 +1,8 @@
+---
+title: 'Mermaid Render Sample'
+type: 'article'
+---
+
 # Mermaid Render Test
 
 ## HTML with Render
