@@ -13,7 +13,9 @@ const { data } = await useAsyncData(() => queryContent('notes').find())
     <div class="my-5">
       <ul v-for="content in data" :key="content._path">
         <li>
-          <nuxt-link :to="content._path">{{ content.title }}</nuxt-link>
+          <nuxt-link :to="content._path"
+            >{{ content.created_at }} {{ content.title }}</nuxt-link
+          >
         </li>
       </ul>
     </div>
