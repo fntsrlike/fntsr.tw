@@ -9,7 +9,6 @@ back to [Index](/)
 - double `[]`: [[note]]
 - double `[]` with alias: [[note|My Note]]
 - double `[]` with number alias: [[note|100]]
-- two link: [[Note1]] and [[Note2]]
 
 ## Image Testing:
 
@@ -32,3 +31,21 @@ size:100
 size:150x500
 
 ![[img/logo.png|150x300]]
+
+## Multiple links
+
+two link:
+- [[bug]] and [[job]]
+- [[story|Story Item]] and [[subitem|Sub Item]]
+
+image:
+- [[icons/bug.png]]
+- [[icons/job.png|job]]
+- ![[icons/story.png|30]]
+- ![[icons/subitem.png|30x50]]
+
+two image:
+- [[icons/bug.png]] and [[icons/job.png]]
+- [[icons/story.png|Story Item]] and [[icons/subitem.png|Sub Item]]
+- ![[icons/story.png|30]] and ![[icons/subitem.png|50]]
+- ![[icons/story.png|30x40]] and ![[icons/subitem.png|50x60]]
