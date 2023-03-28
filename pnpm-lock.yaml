@@ -14,6 +14,7 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-vue: ^9.8.0
+  luxon: ^3.3.0
   mermaid: ^9.3.0
   nuxt: 3.0.0
   prettier: ^2.8.1
@@ -35,6 +36,7 @@ devDependencies:
   eslint-config-prettier: 8.5.0_eslint@8.31.0
   eslint-plugin-prettier: 4.2.1_xtjuwoibeoaqavcvkna3ocxxbu
   eslint-plugin-vue: 9.8.0_eslint@8.31.0
+  luxon: 3.3.0
   mermaid: 9.3.0
   nuxt: 3.0.0_yhcv2mqrgfeflf57otaeyjxel4
   prettier: 2.8.1
@@ -5169,6 +5171,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /luxon/3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
     dev: true
 
   /magic-string/0.25.9:

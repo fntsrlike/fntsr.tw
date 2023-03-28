@@ -1,6 +1,4 @@
-<script setup>
-const { data } = await useAsyncData(() => queryContent('notes').find())
-</script>
+<script setup></script>
 
 <template>
   <div class="container mx-auto">
@@ -14,10 +12,17 @@ const { data } = await useAsyncData(() => queryContent('notes').find())
       <ul v-for="content in data" :key="content._path">
         <li>
           <nuxt-link :to="content._path"
-            >{{ content.created_at }} {{ content.title }}</nuxt-link
+            >{{ DateTime.fromISO(content.created_at).toLocaleString() }}
+            {{ content.title }}</nuxt-link
           >
         </li>
       </ul>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { DateTime } from 'luxon'
+
+const { data } = await useAsyncData(() => queryContent('notes').find())
+</script>
