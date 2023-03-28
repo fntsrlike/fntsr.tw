@@ -1,7 +1,7 @@
 export default defineNitroPlugin((nitroApp) => {
   function replaceWikiLinksWithImages(input: string): string {
     const pattern =
-      /(!)?\[\[([\w/.-_]+)(?:\|([\w\s]+))?(?:(?:\|(\d+)(?:x(\d+))?)?)?\]\]/g
+      /(!)?\[\[([\w/._-]+)(?:\|([\w\s]+))?(?:(?:\|(\d+)(?:x(\d+))?)?)?\]\]/g
     const output = input.replace(
       pattern,
       (_, isImageLink, filename, caption, width, height) => {
