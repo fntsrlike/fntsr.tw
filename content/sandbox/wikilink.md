@@ -39,7 +39,7 @@ two link:
 - [[story|Story Item]] and [[subitem|Sub Item]]
 
 image:
-- [[icons/bug.png]]
+- [[icons/bug.png]] 
 - [[icons/job.png|job]]
 - ![[icons/story.png|30]]
 - ![[icons/subitem.png|30x50]]

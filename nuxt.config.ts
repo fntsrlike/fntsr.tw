@@ -1,3 +1,5 @@
+import { resolve } from 'path'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
@@ -15,6 +17,13 @@ export default defineNuxtConfig({
   },
   content: {
     // https://content.nuxtjs.org/api/configuration
+    sources: {
+      blog: {
+        prefix: 'blog',
+        driver: 'fs',
+        base: resolve(__dirname, '_data/content'),
+      },
+    },
 
     highlight: {
       // Theme used in all color schemes.
