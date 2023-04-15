@@ -17,6 +17,8 @@ npm install
 pnpm install --shamefully-hoist
 ```
 
+Create or clone a content directory as `_write` in root directory.
+
 ## Development Server
 
 Start the development server on http://localhost:3000
