@@ -3,7 +3,7 @@ title: '面對情緒'
 created_at: 2021-12-05 02:26:17
 ---
 
-![[face-to-emotions-principles-on-white-board.png]]
+![[attachments/face-to-emotions-principles-on-white-board.png]]
 
 第一次在工作時介紹這概念的白板字跡
 

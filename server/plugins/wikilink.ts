@@ -8,7 +8,7 @@ export default defineNitroPlugin((nitroApp) => {
         if (isImageLink) {
           const captionText = caption || filename
           const url = filename.replace(/\s/g, '_')
-          const imgTag = `<img src="/attachments/${url}" alt="${captionText}"`
+          const imgTag = `<img src="/${url}" alt="${captionText}"`
           const style = ` style="width:${
             width ? width + 'px' : 'auto'
           }; height:${height ? height + 'px' : 'auto'};"`

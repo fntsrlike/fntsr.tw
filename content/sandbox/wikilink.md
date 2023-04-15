@@ -14,23 +14,23 @@ back to [Index](/)
 
 ### Regular with height 50
 
-![my image](/img/logo.png){ height=50 }
+![my image](/img/avatar.png){ height=50 }
 
 ### Wikilink
 
-![[img/logo.png]]
+![[img/avatar.png]]
 
 ### Wikilink with width
 
 size:100
 
-![[img/logo.png|100]]
+![[img/avatar.png|100]]
 
 ### Wikilink with size
 
 size:150x500
 
-![[img/logo.png|150x300]]
+![[img/avatar.png|150x300]]
 
 ## Multiple links
 
@@ -39,13 +39,13 @@ two link:
 - [[story|Story Item]] and [[subitem|Sub Item]]
 
 image:
-- [[icons/bug.png]]
-- [[icons/job.png|job]]
-- ![[icons/story.png|30]]
-- ![[icons/subitem.png|30x50]]
+- [[img/avatar.png]] 
+- [[img/avatar.png|job]]
+- ![[img/avatar.png|30]]
+- ![[img/avatar.png|30x50]]
 
 two image:
-- [[icons/bug.png]] and [[icons/job.png]]
-- [[icons/story.png|Story Item]] and [[icons/subitem.png|Sub Item]]
-- ![[icons/story.png|30]] and ![[icons/subitem.png|50]]
-- ![[icons/story.png|30x40]] and ![[icons/subitem.png|50x60]]
+- [[img/avatar.png]] and [[img/icons/job.png]]
+- [[img/avatar.png|First]] and [[img/avatar.png|Second]]
+- ![[img/avatar.png|30]] and ![[img/avatar.png|50]]
+- ![[img/avatar.png|30x40]] and ![[img/avatar.png|50x60]]
