@@ -1,20 +1,35 @@
 <template>
-  <div class="">
+  <div class="prose dark:prose-invert">
     <section>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
-      voluptatibus eius omnis hic maxime tempore itaque, ducimus repudiandae
-      quam eligendi cupiditate veritatis porro dolorem? Dicta quod deserunt
-      voluptas incidunt alias!
+      <h2>Digital Garden</h2>
+      Digital Garden 的一番介紹
     </section>
     <section>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio assumenda
-      dignissimos impedit. Vel quae praesentium illum voluptatem nobis. Labore
-      beatae quos ipsam natus, eos placeat adipisci tempore dolorum fugiat
-      repudiandae nulla, quod aliquam ut quo enim. Odio architecto magni at
-      fugit quas officia rerum dolorum sapiente corrupti consectetur eveniet,
-      fuga, minus, aspernatur sequi deserunt nam et. Et cumque eveniet
-      asperiores sit quis nobis voluptatibus, ullam voluptates quaerat nam rem
-      excepturi ipsam quae laudantium sunt ex corporis. Sapiente a alias non!
+      <h2>近期新增文章：</h2>
+      <ol>
+        <li v-for="content in articles" :key="content._path">
+          {{ DateTime.fromISO(content.created_at).toLocaleString() }}
+          <nuxt-link :to="content._path">{{ content.title }}</nuxt-link>
+        </li>
+      </ol>
+    </section>
+    <section>
+      <h2>近期更新的筆記：</h2>
+      <div>
+        <span v-for="content in notes" :key="content._path">
+          <nuxt-link :to="content._path">
+            {{ DateTime.fromISO(content.created_at).toLocaleString() }}
+            {{ content.title }}</nuxt-link
+          >、
+        </span>
+      </div>
     </section>
   </div>
 </template>
+
+<script setup lang="ts">
+import { DateTime } from 'luxon'
+
+const notes = await useAsyncData(() => queryContent('notes').find()).data
+const articles = await useAsyncData(() => queryContent('articles').find()).data
+</script>
