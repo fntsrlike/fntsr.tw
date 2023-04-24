@@ -9,8 +9,8 @@
     <div class="my-5">
       <ul>
         <li v-for="content in data" :key="content._path">
-          <nuxt-link :to="content._path"
-            >{{ DateTime.fromISO(content.created_at).toLocaleString() }}
+          <nuxt-link :to="content._path">
+            {{ content.created_at }}
             {{ content.title }}</nuxt-link
           >
         </li>
