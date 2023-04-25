@@ -33,8 +33,6 @@ const props = defineProps({
   },
 })
 
-console.log(props)
-
 const components = {
   email: 'mdi:email',
   github: 'mdi:github',
