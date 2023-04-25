@@ -84,7 +84,11 @@ const posts = data.value
 const filteredBlogPosts = computed(() => {
   return posts.filter((post) => {
     const searchContent =
-      post.title + post.description + post.published_at + post.created_at
+      post.title +
+      post.title_en +
+      post.description +
+      post.tags.map((tag) => tag.split(' ').join('-')) +
+      DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd')
     return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
   })
 })
