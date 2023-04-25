@@ -1,9 +1,9 @@
 <script setup></script>
 
 <template>
-  <div class="container mx-auto">
-    <div class="text-center">
-      <h1 class="text-4xl">Notes</h1>
+  <div class="divide-y divide-gray-200 dark:divide-gray-700">
+    <div class="space-y-2 pt-6 pb-8 md:space-y-5">
+      <PageTitle> Notes </PageTitle>
     </div>
     <div>There are {{ data.length }} available notes</div>
     <div class="my-5">
