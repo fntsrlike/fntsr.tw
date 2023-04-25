@@ -59,5 +59,4 @@ import siteMetadata from '@/_write/siteMetadata'
 import footerNavLinks from '@/_write/footerNavLinks'
 
 const { socialMedias } = siteMetadata
-console.log(socialMedias)
 </script>
