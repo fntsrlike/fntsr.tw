@@ -4,7 +4,7 @@
     class="text-sm text-gray-500 transition hover:text-gray-600"
     target="_blank"
     rel="noopener noreferrer"
-    :href="href"
+    :href="kind === 'mail' ? 'mailto:' + href : href"
   >
     <span class="sr-only">{{ kind }}</span>
     <Icon
@@ -33,8 +33,10 @@ const props = defineProps({
   },
 })
 
+console.log(props)
+
 const components = {
-  mail: 'mdi:email',
+  email: 'mdi:email',
   github: 'mdi:github',
   facebook: 'mdi:facebook',
   youtube: 'mdi:youtube',
@@ -46,7 +48,7 @@ const components = {
 
 const isValid = ref(true)
 const iconCode = components[props.kind]
-const mailRex = /^mailto:\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/
+const mailRex = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/
 
 if (
   !props.href ||

@@ -1,32 +1,54 @@
 <template>
   <footer>
-    <div class="mt-16 flex flex-col items-center">
-      <div class="mb-3 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
+    <div
+      class="sm:relative flex flex-col items-center gap-3 sm:flex-row sm:justify-between py-6"
+    >
+      <div
+        class="flex flex-col-reverse items-center gap-3 sm:flex-row sm:w-40 md:w-60"
+      >
+        <div class="flex flex-col items-center">
+          <div class="flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
+            <div>© 2018 - {{ new Date().getFullYear() }}</div>
+            <div>{{ ' • ' }}</div>
+            <NuxtLink href="/">深藏若虛</NuxtLink>
+          </div>
+          <div class="text-sm text-gray-500 dark:text-gray-400 items-left">
+            <div>Yuehu Lin</div>
+          </div>
+        </div>
+      </div>
+      <ul class="flex flex-wrap justify-center text-sm gap-x-6 gap-y-2">
+        <!--[-->
         <DevOnly>
-          <SocialIcon kind="hourglass" href="/sandbox" :size="6" />
+          <li>
+            <NuxtLink
+              to="/sandbox"
+              class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+            >
+              Sandbox
+            </NuxtLink>
+          </li>
         </DevOnly>
-        <SocialIcon
-          kind="mail"
-          :href="'mailto:' + siteMetadata.email"
-          :size="6"
-        />
-        <SocialIcon kind="github" :href="siteMetadata.github" :size="6" />
-        <SocialIcon kind="facebook" :href="siteMetadata.facebook" :size="6" />
-        <SocialIcon kind="youtube" :href="siteMetadata.youtube" :size="6" />
-        <SocialIcon kind="linkedin" :href="siteMetadata.linkedin" :size="6" />
-        <SocialIcon kind="twitter" :href="siteMetadata.twitter" :size="6" />
-      </div>
-      <div class="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-        <div>Yuehu Lin</div>
-        <div>{{ ' • ' }}</div>
-        <div>© {{ new Date().getFullYear() }}</div>
-        <div>{{ ' • ' }}</div>
-        <NuxtLink href="/">深藏若虛</NuxtLink>
-      </div>
-      <div class="mb-8 text-sm text-gray-500 dark:text-gray-400">
-        <NuxtLink href="https://github.com/timlrx/tailwind-nextjs-starter-blog">
-          Tailwind Nextjs Theme
-        </NuxtLink>
+        <li v-for="link in footerNavLinks" :key="link.title">
+          <NuxtLink
+            :to="link.href"
+            class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+          >
+            {{ link.title }}
+          </NuxtLink>
+        </li>
+      </ul>
+      <div class="flex items-center justify-end gap-3 z-10 sm:w-40 md:w-60">
+        <div>
+          <SocialIcon
+            v-for="(item, kind) in socialMedias"
+            :key="kind"
+            :href="item"
+            :kind="kind"
+            :size="6"
+            class="mr-6"
+          />
+        </div>
       </div>
     </div>
   </footer>
@@ -34,4 +56,8 @@
 
 <script setup>
 import siteMetadata from '@/_write/siteMetadata'
+import footerNavLinks from '@/_write/footerNavLinks'
+
+const { socialMedias } = siteMetadata
+console.log(socialMedias)
 </script>
