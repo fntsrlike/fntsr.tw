@@ -79,7 +79,6 @@ const { data } = await useAsyncData(() => queryContent('articles').find())
 const title = 'Articles'
 const searchValue = ref('')
 const posts = data.value
-// const meetingEvents = computed(() => selectedEvents.value.filter((event) => (!unsprint.includes(event.title))));
 
 const filteredBlogPosts = computed(() => {
   return posts.filter((post) => {
