@@ -18,7 +18,6 @@
         </div>
       </div>
       <ul class="flex flex-wrap justify-center text-sm gap-x-6 gap-y-2">
-        <!--[-->
         <DevOnly>
           <li>
             <NuxtLink
