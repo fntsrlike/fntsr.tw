@@ -1,9 +1,7 @@
 <template>
   <ListLayout>
     <ListHeader>
-      <PageTitle>
-        {{ title }}
-      </PageTitle>
+      <PageTitle> Articles </PageTitle>
       <SearchBar v-model="searchValue" placeholder-text="Search articles" />
     </ListHeader>
     <ul>
@@ -14,16 +12,15 @@
   </ListLayout>
 </template>
 <script setup>
-import { DateTime } from 'luxon'
 import { ref } from 'vue'
+import { DateTime } from 'luxon'
+
+const searchValue = ref('')
 
 const { data } = await useAsyncData(() => queryContent('articles').find())
-const title = 'Articles'
-const searchValue = ref('')
-const posts = data.value
 
 const filteredBlogPosts = computed(() => {
-  return posts.filter((post) => {
+  return data.value.filter((post) => {
     const searchContent =
       post.title +
       post.title_en +
