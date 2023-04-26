@@ -1,26 +1,33 @@
-<script setup></script>
-
 <template>
-  <div class="divide-y divide-gray-200 dark:divide-gray-700">
-    <div class="space-y-2 pt-6 pb-8 md:space-y-5">
+  <ListLayout>
+    <ListHeader>
       <PageTitle> Notes </PageTitle>
-    </div>
-    <div>There are {{ data.length }} available notes</div>
-    <div class="my-5">
-      <ul>
-        <li v-for="content in data" :key="content._path">
-          <nuxt-link :to="content._path">
-            {{ content.created_at }}
-            {{ content.title }}</nuxt-link
-          >
-        </li>
-      </ul>
-    </div>
-  </div>
+      <SearchBar v-model="searchValue" placeholder-text="Search notes" />
+    </ListHeader>
+    <ul>
+      <li v-for="item in filteredPosts" :key="item._path" class="py-4">
+        <PostItem :item="item" />
+      </li>
+    </ul>
+  </ListLayout>
 </template>
-
-<script setup lang="ts">
+<script setup>
+import { ref } from 'vue'
 import { DateTime } from 'luxon'
 
+const searchValue = ref('')
+
 const { data } = await useAsyncData(() => queryContent('notes').find())
+
+const filteredPosts = computed(() => {
+  return data.value.filter((post) => {
+    const searchContent =
+      post.title +
+      post.title_en +
+      post.description +
+      post.tags.map((tag) => tag.split(' ').join('-')) +
+      DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd')
+    return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
+  })
+})
 </script>
