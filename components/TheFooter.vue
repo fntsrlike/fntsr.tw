@@ -8,7 +8,7 @@
       >
         <div class="flex flex-col items-center">
           <div class="flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-            <div>© 2018 - {{ new Date().getFullYear() }}</div>
+            <div>© 2013 - {{ new Date().getFullYear() }}</div>
             <div>{{ ' • ' }}</div>
             <NuxtLink href="/">深藏若虛</NuxtLink>
           </div>
