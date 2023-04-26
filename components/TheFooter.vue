@@ -22,7 +22,7 @@
           <li>
             <NuxtLink
               to="/sandbox"
-              class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+              class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-300"
             >
               Sandbox
             </NuxtLink>
@@ -31,7 +31,7 @@
         <li v-for="link in footerNavLinks" :key="link.title">
           <NuxtLink
             :to="link.href"
-            class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
+            class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-300"
           >
             {{ link.title }}
           </NuxtLink>
