@@ -1,5 +1,13 @@
 ---
-title: 'Code Sample'
+title: '程式碼渲染示例'
+title_en: 'Code Render'
+slug: 'cod-render'
+aliases: []
+description: ''
+created_at: 2023-02-01 
+published_at: 2023-02-01 
+updated_at: 
+tags: []
 ---
 
 # Code Higihting Style Test
