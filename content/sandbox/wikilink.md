@@ -16,6 +16,14 @@ back to [Index](/)
 
 ## Text Link Testing:
 
+```
+- normal md link: [My Note](note)
+- single `[]`: [note]
+- double `[]`: [[note]]
+- double `[]` with alias: [[note|My Note]]
+- double `[]` with number alias: [[note|100]]
+```
+
 - normal md link: [My Note](note)
 - single `[]`: [note]
 - double `[]`: [[note]]
@@ -26,7 +34,11 @@ back to [Index](/)
 
 ### Regular with height 50
 
-![my image](/img/avatar.png){ height=50 }
+```
+![my image](/img/avatar.png){ width=50px }
+```
+
+![my image](/img/avatar.png){ width=50px }
 
 ### Wikilink
 
