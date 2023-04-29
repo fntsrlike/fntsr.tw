@@ -13,12 +13,16 @@
     "@nuxt/content": "^2.3.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/tailwindcss": "^6.6.0",
+    "@nuxtjs/color-mode": "^3.2.0",
+    "@nuxtjs/svg": "^0.4.0",
     "@tailwindcss/typography": "^0.5.8",
+    "@types/lodash": "^4.14.194",
     "@types/luxon": "^3.3.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.8.0",
+    "lodash": "^4.17.21",
     "luxon": "^3.3.0",
     "mermaid": "^9.3.0",
     "nuxt": "3.0.0",
@@ -37,10 +41,5 @@
     "patchedDependencies": {
       "shiki-es@0.1.2": "patches/shiki-es@0.1.2.patch"
     }
-  },
-  "dependencies": {
-    "@nuxtjs/svg": "^0.4.0",
-    "@types/lodash": "^4.14.194",
-    "lodash": "^4.17.21"
   }
 }
