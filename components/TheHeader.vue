@@ -21,7 +21,7 @@
           {{ link.title }}
         </NuxtLink>
       </nav>
-      <!-- TODO: ThemeSwitch component -->
+      <ThemeToggle />
       <MobileNav />
     </div>
   </header>
