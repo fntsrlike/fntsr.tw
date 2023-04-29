@@ -9,11 +9,19 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', 'nuxt-icon'],
+  modules: [
+    '@nuxt/content',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/tailwindcss',
+    'nuxt-icon',
+  ],
   typescript: {
     shim: false,
     strict: true,
     typeCheck: true,
+  },
+  colorMode: {
+    classSuffix: '',
   },
   content: {
     // https://content.nuxtjs.org/api/configuration
