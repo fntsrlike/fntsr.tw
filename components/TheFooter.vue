@@ -4,7 +4,7 @@
       class="sm:relative flex flex-col items-center gap-3 sm:flex-row sm:justify-between py-6"
     >
       <div
-        class="flex flex-col-reverse items-center gap-3 sm:flex-row sm:w-40 md:w-60"
+        class="flex flex-col-reverse items-center gap-3 sm:flex-row sm:w-56 md:w-60"
       >
         <div class="flex flex-col items-center">
           <div class="flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
