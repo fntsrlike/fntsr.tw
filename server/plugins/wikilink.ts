@@ -1,30 +1,59 @@
 export default defineNitroPlugin((nitroApp) => {
-  function replaceWikiLinksWithImages(input: string): string {
-    const pattern =
-      /(!)?\[\[([\w/._-]+)(?:\|([\w\s]+))?(?:(?:\|(\d+)(?:x(\d+))?)?)?\]\]/g
-    const output = input.replace(
-      pattern,
-      (_, isImageLink, filename, caption, width, height) => {
-        if (isImageLink) {
-          const captionText = caption || filename
-          const url = filename.replace(/\s/g, '_')
-          const imgTag = `<img src="/${url}" alt="${captionText}"`
-          const style = ` style="width:${
-            width ? width + 'px' : 'auto'
-          }; height:${height ? height + 'px' : 'auto'};"`
-          const closingTag = '/>'
-          return `${imgTag}${style}${closingTag}`
-        } else {
-          return `[${caption || filename}](${filename.replace(/\s/g, '_')})`
-        }
+  function convertWikiLink(text: string): string {
+    const renderRegExp = /!\[\[([\w/.]+)\|?([^[\]]+)?\]\]/
+    const linkRegExp = /\[\[([\w/.]+)\|?([^[\]]+)?\]\]/
+    const imageSizeRegExp = /!\[\[[\w/.]+\|(\d+)(?:[xX](\d+))?\]\]/
+    let newText = ''
+    let newLine = ''
+    let match
+    let isInCodeBlock = false
+    let isCodeBlockSyntax
+
+    for (const line of text.split('\n')) {
+      isCodeBlockSyntax = line.slice(0, 3) === '```'
+      if (isCodeBlockSyntax) {
+        isInCodeBlock = !isInCodeBlock
       }
-    )
-    return output
+
+      if (isInCodeBlock) {
+        newText += line + '\n'
+        continue
+      }
+
+      newLine = line
+
+      while ((match = renderRegExp.exec(newLine)) !== null) {
+        let style = ''
+        const [, imgPath, imgAlias] = match
+        const imgSizeMatch = imageSizeRegExp.exec(match[0])
+
+        if (imgSizeMatch !== null) {
+          const [, width, height] = imgSizeMatch
+          const styleWidth = width ? `width=${width}px` : ''
+          const styleHeight = height ? `height=${height}px` : ''
+          style = `{ ${styleWidth} ${styleHeight} }`
+        }
+
+        const alias = imgSizeMatch || !imgAlias ? imgPath : imgAlias
+        const imgMarkdown = `![${alias}](${imgPath})${style}`
+        newLine = newLine.replace(match[0], imgMarkdown)
+      }
+
+      while ((match = linkRegExp.exec(newLine)) !== null) {
+        const linkPath = match[1]
+        const linkAlias = match[2]
+        const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
+        newLine = newLine.replace(match[0], linkMarkdown)
+      }
+
+      newText += newLine + '\n'
+    }
+    return newText
   }
 
   nitroApp.hooks.hook('content:file:beforeParse', (file) => {
     if (file._id.endsWith('.md')) {
-      file.body = replaceWikiLinksWithImages(file.body)
+      file.body = convertWikiLink(file.body)
     }
   })
 })
