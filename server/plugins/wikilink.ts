@@ -35,7 +35,8 @@ export default defineNitroPlugin((nitroApp) => {
         style = `{ ${styleWidth} ${styleHeight} }`
       }
 
-      const alias = imgSizeMatch || !imgAlias ? imgPath : imgAlias
+      const filename = imgPath.split('/').pop()
+      const alias = imgSizeMatch || !imgAlias ? filename : imgAlias
       const imgMarkdown = `![${alias}](${imgPath})${style}`
       return imgMarkdown
     })
