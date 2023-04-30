@@ -4,26 +4,17 @@ export default defineNitroPlugin((nitroApp) => {
     const linkRegExp = /\[\[([\w/.]+)\|?([^[\]]+)?\]\]/g
     const imageSizeRegExp = /!\[\[[\w/.]+\|(\d+)(?:[xX](\d+))?\]\]/
 
-    const lines = text.split('\n')
-    const convertedLines = lines.reduce((acc: string[], line: string) => {
-      const isCodeBlockSyntax = line.slice(0, 3) === '```'
-      if (isCodeBlockSyntax) {
-        acc.push(line)
-        return acc
-      }
-
-      let newLine = line
-      const isInCodeBlock =
-        acc.length > 0 && acc[acc.length - 1].slice(0, 3) === '```'
+    let isInCodeBlock = false
+    const convertedLines = text.split('\n').map((line) => {
+      const isCodeBlockSyntax = line.startsWith('```')
+      isInCodeBlock = isCodeBlockSyntax ? !isInCodeBlock : isInCodeBlock
 
       if (!isInCodeBlock) {
-        newLine = convertImageMarkdown(newLine, imageSizeRegExp, renderRegExp)
-        newLine = convertLinkMarkdown(newLine, linkRegExp)
+        line = convertImageMarkdown(line, imageSizeRegExp, renderRegExp)
+        line = convertLinkMarkdown(line, linkRegExp)
       }
-
-      acc.push(newLine)
-      return acc
-    }, [])
+      return line
+    })
 
     return convertedLines.join('\n')
   }
