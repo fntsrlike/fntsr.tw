@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-between py-10">
+  <header class="flex items-center justify-between pt-6 pb-10">
     <div>
       <NuxtLink href="/" :aria-label="siteMetadata.headerTitle">
         <div class="flex items-center justify-between">
