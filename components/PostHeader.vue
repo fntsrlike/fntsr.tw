@@ -12,13 +12,26 @@
     >
       {{ post.title_en }}
     </h2>
-    <time :datetime="post.created_at">
-      發表於
-      {{ DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd') }}
-    </time>
-    <time v-if="post.updated_at" :datetime="post.updated_at">
-      更新於 {{ DateTime.fromISO(post.updated_at).toFormat('yyyy-LL-dd') }}
-    </time>
+    <div class="text-sm text-gray-600 dark:text-gray-400">
+      <time
+        :datetime="post.published_at"
+        :title="
+          DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd hh:mm')
+        "
+      >
+        發表於
+        {{ DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd') }}
+      </time>
+      <time
+        v-if="post.updated_at"
+        :datetime="post.updated_at"
+        :title="DateTime.fromISO(post.updated_at).toFormat('yyyy-LL-dd hh:mm')"
+      >
+        ，並於
+        {{ DateTime.fromISO(post.updated_at).toFormat('yyyy-LL-dd') }}
+        更新
+      </time>
+    </div>
   </header>
 </template>
 <script setup lang="ts">
