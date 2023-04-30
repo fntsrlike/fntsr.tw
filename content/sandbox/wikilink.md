@@ -85,6 +85,7 @@ image:
 two image:
 - [[/img/avatar.png]] and [[img/icons/job.png]]
 - [[/img/avatar.png|First]] and [[/img/avatar.png|Second]]
+- ![[/img/avatar.png|First]] and ![[/img/avatar.png|Second]]
 - ![[/img/avatar.png|30]] and ![[/img/avatar.png|50]]
 - ![[/img/avatar.png|30x40]] and ![[/img/avatar.png|50x60]]
 ```
@@ -104,6 +105,7 @@ image:
 two image:
 - [[/img/avatar.png]] and [[img/icons/job.png]]
 - [[/img/avatar.png|First]] and [[/img/avatar.png|Second]]
+- ![[/img/avatar.png|First]] and ![[/img/avatar.png|Second]]
 - ![[/img/avatar.png|30]] and ![[/img/avatar.png|50]]
 - ![[/img/avatar.png|30x40]] and ![[/img/avatar.png|50x60]]
 ~~~
@@ -121,5 +123,6 @@ image:
 two image:
 - [[/img/avatar.png]] and [[img/icons/job.png]]
 - [[/img/avatar.png|First]] and [[/img/avatar.png|Second]]
+- ![[/img/avatar.png|First]] and ![[/img/avatar.png|Second]]
 - ![[/img/avatar.png|30]] and ![[/img/avatar.png|50]]
 - ![[/img/avatar.png|30x40]] and ![[/img/avatar.png|50x60]]
