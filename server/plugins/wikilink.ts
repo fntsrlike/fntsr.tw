@@ -1,54 +1,60 @@
 export default defineNitroPlugin((nitroApp) => {
   function convertWikiLink(text: string): string {
-    const renderRegExp = /!\[\[([\w/.]+)\|?([^[\]]+)?\]\]/
-    const linkRegExp = /\[\[([\w/.]+)\|?([^[\]]+)?\]\]/
+    const renderRegExp = /!\[\[([\w/.]+)\|?([^[\]]+)?\]\]/g
+    const linkRegExp = /\[\[([\w/.]+)\|?([^[\]]+)?\]\]/g
     const imageSizeRegExp = /!\[\[[\w/.]+\|(\d+)(?:[xX](\d+))?\]\]/
-    let newText = ''
-    let newLine = ''
-    let match
-    let isInCodeBlock = false
-    let isCodeBlockSyntax
 
-    for (const line of text.split('\n')) {
-      isCodeBlockSyntax = line.slice(0, 3) === '```'
+    const lines = text.split('\n')
+    const convertedLines = lines.reduce((acc: string[], line: string) => {
+      const isCodeBlockSyntax = line.slice(0, 3) === '```'
       if (isCodeBlockSyntax) {
-        isInCodeBlock = !isInCodeBlock
+        acc.push(line)
+        return acc
       }
 
-      if (isInCodeBlock) {
-        newText += line + '\n'
-        continue
+      let newLine = line
+      const isInCodeBlock =
+        acc.length > 0 && acc[acc.length - 1].slice(0, 3) === '```'
+
+      if (!isInCodeBlock) {
+        newLine = convertImageMarkdown(newLine, imageSizeRegExp, renderRegExp)
+        newLine = convertLinkMarkdown(newLine, linkRegExp)
       }
 
-      newLine = line
+      acc.push(newLine)
+      return acc
+    }, [])
 
-      while ((match = renderRegExp.exec(newLine)) !== null) {
-        let style = ''
-        const [, imgPath, imgAlias] = match
-        const imgSizeMatch = imageSizeRegExp.exec(match[0])
+    return convertedLines.join('\n')
+  }
 
-        if (imgSizeMatch !== null) {
-          const [, width, height] = imgSizeMatch
-          const styleWidth = width ? `width=${width}px` : ''
-          const styleHeight = height ? `height=${height}px` : ''
-          style = `{ ${styleWidth} ${styleHeight} }`
-        }
+  function convertImageMarkdown(
+    line: string,
+    imageSizeRegExp: RegExp,
+    renderRegExp: RegExp
+  ) {
+    return line.replace(renderRegExp, (match, imgPath, imgAlias) => {
+      let style = ''
+      const imgSizeMatch = imageSizeRegExp.exec(match)
 
-        const alias = imgSizeMatch || !imgAlias ? imgPath : imgAlias
-        const imgMarkdown = `![${alias}](${imgPath})${style}`
-        newLine = newLine.replace(match[0], imgMarkdown)
+      if (imgSizeMatch !== null) {
+        const [, width, height] = imgSizeMatch
+        const styleWidth = width ? `width=${width}px` : ''
+        const styleHeight = height ? `height=${height}px` : ''
+        style = `{ ${styleWidth} ${styleHeight} }`
       }
 
-      while ((match = linkRegExp.exec(newLine)) !== null) {
-        const linkPath = match[1]
-        const linkAlias = match[2]
-        const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
-        newLine = newLine.replace(match[0], linkMarkdown)
-      }
+      const alias = imgSizeMatch || !imgAlias ? imgPath : imgAlias
+      const imgMarkdown = `![${alias}](${imgPath})${style}`
+      return imgMarkdown
+    })
+  }
 
-      newText += newLine + '\n'
-    }
-    return newText
+  function convertLinkMarkdown(line: string, linkRegExp: RegExp) {
+    return line.replace(linkRegExp, (_, linkPath, linkAlias) => {
+      const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
+      return linkMarkdown
+    })
   }
 
   nitroApp.hooks.hook('content:file:beforeParse', (file) => {
