@@ -14,6 +14,7 @@
     </h2>
     <div class="text-sm text-gray-600 dark:text-gray-400">
       <time
+        v-if="post.published_at"
         :datetime="post.published_at"
         :title="
           DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd hh:mm')
