@@ -3,7 +3,9 @@
     <div class="flex h-screen flex-col justify-between font-sans">
       <TheHeader />
       <main class="mb-auto">
-        <slot />
+        <NuxtLayout>
+          <slot />
+        </NuxtLayout>
       </main>
       <TheFooter />
     </div>
