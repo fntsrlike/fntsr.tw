@@ -10,6 +10,12 @@
         <time v-if="item.published_at" dateTime="{{item.published_at}}">
           {{ DateTime.fromISO(item.published_at).toFormat('yyyy-LL-dd') }}
         </time>
+        <time
+          v-if="!item.published_at && item.created_at"
+          dateTime="{{item.created_at}}"
+        >
+          {{ DateTime.fromISO(item.created_at).toFormat('yyyy-LL-dd') }}
+        </time>
       </dd>
     </dl>
     <div class="space-y-3 xl:col-span-3">
