@@ -1,8 +1,8 @@
 export default defineNitroPlugin((nitroApp) => {
   function convertWikiLink(text: string): string {
-    const renderRegExp = /!\[\[([\w/.]+)\|?([^[\]]+)?\]\]/g
-    const linkRegExp = /\[\[([\w/.]+)\|?([^[\]]+)?\]\]/g
-    const imageSizeRegExp = /!\[\[[\w/.]+\|(\d+)(?:[xX](\d+))?\]\]/
+    const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
+    const linkRegExp = /\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
+    const imageSizeRegExp = /!\[\[[\w/.\-_ ]+\|(\d+)(?:[xX](\d+))?\]\]/
 
     let isInCodeBlock = false
     const convertedLines = text.split('\n').map((line) => {
@@ -10,6 +10,7 @@ export default defineNitroPlugin((nitroApp) => {
       isInCodeBlock = isCodeBlockSyntax ? !isInCodeBlock : isInCodeBlock
 
       if (!isInCodeBlock) {
+        line = convertFilePath(line)
         line = convertImageMarkdown(line, imageSizeRegExp, renderRegExp)
         line = convertLinkMarkdown(line, linkRegExp)
       }
@@ -17,6 +18,12 @@ export default defineNitroPlugin((nitroApp) => {
     })
 
     return convertedLines.join('\n')
+  }
+
+  function convertFilePath(line: string) {
+    return line
+      .replace('[[public/attachments/', '[[/attachments/')
+      .replace('[[content/', '[[/')
   }
 
   function convertImageMarkdown(
