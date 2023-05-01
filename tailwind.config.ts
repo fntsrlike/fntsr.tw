@@ -10,6 +10,9 @@ export default <Partial<Config>>{
         DEFAULT: {
           // this is for prose class
           css: {
+            a: {
+              'text-decoration': 'none',
+            },
             li: {
               'margin-top': '0em',
               'margin-bottom': '0em',
