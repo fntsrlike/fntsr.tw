@@ -7,7 +7,7 @@
   </NuxtLink>
 </template>
 <script setup>
-import { kebabCase } from 'lodash/string'
+import { kebabCase } from 'lodash-es/string'
 
 defineProps({
   text: {
