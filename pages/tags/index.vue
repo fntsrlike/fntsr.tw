@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { kebabCase, toLower } from 'lodash/string'
+import { kebabCase, toLower } from 'lodash-es/string'
 
 const tagsCount = {}
 
