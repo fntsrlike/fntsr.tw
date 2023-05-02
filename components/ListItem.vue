@@ -22,7 +22,7 @@
       <div>
         <NuxtLink :href="item._path">
           <h3
-            class="text-2xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100"
+            class="text-xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100"
           >
             {{ item.title }}
           </h3>
