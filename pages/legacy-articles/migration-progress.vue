@@ -1,6 +1,6 @@
 <template>
   <article class="max-w-full">
-    <ContentDoc v-slot="{ doc }">
+    <ContentDoc v-slot="{ doc }" path="_pages/migration-progress">
       <PostHeader :post="doc"></PostHeader>
       <PostContent :post="doc"></PostContent>
     </ContentDoc>
