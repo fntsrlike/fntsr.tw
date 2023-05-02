@@ -1,10 +1,3 @@
 <template>
-  <ListPage :posts="data" />
+  <ListPageByRoute />
 </template>
-<script setup>
-const { data } = await useAsyncData(() =>
-  queryContent('sandbox')
-    .where({ slug: { $ne: 'sandbox' } })
-    .find()
-)
-</script>
