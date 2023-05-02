@@ -1,5 +1,6 @@
+import { ParsedContent } from "@nuxt/content/dist/runtime/types"
 
-interface Post {
+interface Post extends ParsedContent {
   title: string
   title_en: string
   slug: string
