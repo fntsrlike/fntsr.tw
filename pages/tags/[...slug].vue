@@ -33,8 +33,6 @@ const { data } = await useAsyncData(() =>
     .find()
 )
 
-console.log(data.value)
-
 const tagPosts = data.value.filter((post) => {
   const tags = post.tags.map((tag) => tag.split(' ').join('-').toLowerCase())
   return tags.includes(tag)
