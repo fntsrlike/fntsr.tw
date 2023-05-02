@@ -1,10 +1,3 @@
 <template>
-  <ListPage :posts="data" />
+  <ListPageByRoute />
 </template>
-<script setup>
-const { data } = await useAsyncData(() =>
-  queryContent('announce')
-    .where({ slug: { $ne: 'announce' } })
-    .find()
-)
-</script>
