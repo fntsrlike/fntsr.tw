@@ -1,27 +1,25 @@
 <template>
   <section>
-    <ContentDoc v-slot="{ doc }">
-      <div class="divide-y divide-gray-200 dark:divide-gray-700">
-        <header class="pt-6 pb-8 space-y-2 md:space-y-5">
-          <div>
-            <PageTitle>
-              {{ doc.title }}
-            </PageTitle>
-            <PageSubtitle v-if="doc.title_en" lang="en">
-              {{ doc.title_en }}
-            </PageSubtitle>
-          </div>
-          <SearchBar v-model="searchValue" placeholder-text="Search announce" />
-        </header>
-        <main>
-          <ul>
-            <li v-for="item in filteredPosts" :key="item._path" class="py-4">
-              <ListItem :item="item" />
-            </li>
-          </ul>
-        </main>
-      </div>
-    </ContentDoc>
+    <div class="divide-y divide-gray-200 dark:divide-gray-700">
+      <header class="pt-6 pb-8 space-y-2 md:space-y-5">
+        <div>
+          <PageTitle>
+            {{ page.title }}
+          </PageTitle>
+          <PageSubtitle v-if="page.title_en" lang="en">
+            {{ page.title_en }}
+          </PageSubtitle>
+        </div>
+        <SearchBar v-model="searchValue" placeholder-text="Search announce" />
+      </header>
+      <main>
+        <ul>
+          <li v-for="item in filteredPosts" :key="item._path" class="py-4">
+            <ListItem :item="item" />
+          </li>
+        </ul>
+      </main>
+    </div>
   </section>
 </template>
 <script setup lang="ts">
@@ -30,6 +28,7 @@ import { DateTime } from 'luxon'
 import { Post } from '@/types/index'
 
 const props = defineProps<{
+  page: Post
   posts: Post[]
 }>()
 
