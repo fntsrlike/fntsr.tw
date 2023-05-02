@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h3>Articles</h3>
+    <h3>Announce</h3>
     <ol>
       <li v-for="content in articles" :key="content._path">
         {{ DateTime.fromISO(content.created_at).toFormat('yyyy-LL-dd') }}
@@ -21,6 +21,6 @@ const props = defineProps({
 })
 
 const articles = await useAsyncData(() =>
-  queryContent('articles').limit(props.count).find()
+  queryContent('announce').limit(props.count).find()
 ).data
 </script>
