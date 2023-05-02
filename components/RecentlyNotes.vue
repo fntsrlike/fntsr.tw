@@ -1,10 +1,15 @@
 <template>
   <section>
-    <h2>近期更新的筆記：</h2>
+    <h3>Notes</h3>
     <div>
-      <ul>
-        <li v-for="content in notes" :key="content._path">
-          <nuxt-link :to="content._path"> {{ content.title }}</nuxt-link>
+      <ul class="list-none px-0">
+        <li
+          v-for="(content, index) in notes"
+          :key="content._path"
+          class="inline-block px-0"
+        >
+          <nuxt-link :to="content._path"> {{ content.title }}</nuxt-link
+          ><span v-if="index + 1 < notes.length">、</span>
         </li>
       </ul>
     </div>
