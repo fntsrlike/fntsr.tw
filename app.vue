@@ -14,5 +14,6 @@ useHead({
   htmlAttrs: {
     lang: 'zh-Hant-TW',
   },
+  title: '深藏若虛',
 })
 </script>

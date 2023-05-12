@@ -56,5 +56,7 @@ const { data } = await useAsyncData('tags', () =>
   queryContent('articles').only(['tags']).find()
 )
 
-const articleTags = [...new Set(flatten(data.value, 'tags'))]
+const articleTags = [...new Set(flatten(data.value, 'tags'))].filter(
+  (tag) => !!tag
+)
 </script>
