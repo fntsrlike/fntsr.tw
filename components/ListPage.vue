@@ -37,11 +37,12 @@ const searchValue = ref('')
 
 const filteredPosts = computed(() => {
   return props.posts.filter((post: Post) => {
+    const tags = post.tags.filter((tag) => !!tag)
     const searchContent =
       post.title +
       post.title_en +
       post.description +
-      post.tags.map((tag: string) => tag.split(' ').join('-')) +
+      tags.map((tag: string) => (tag ? tag.split(' ').join('-') : '')) +
       DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd')
     return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
   })
