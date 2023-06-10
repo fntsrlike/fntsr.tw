@@ -40,23 +40,11 @@
     </div>
   </article>
 </template>
-<script setup>
+<script setup lang="ts">
 import { DateTime } from 'luxon'
+import { Post } from '@/types/index'
 
-defineProps({
-  item: {
-    type: Object,
-    default: () => ({
-      title: '',
-      title_en: '',
-      slug: '',
-      aliases: [],
-      description: '',
-      created_at: '',
-      published_at: '',
-      updated_at: '',
-      tags: [],
-    }),
-  },
-})
+defineProps<{
+  item: Post
+}>()
 </script>
