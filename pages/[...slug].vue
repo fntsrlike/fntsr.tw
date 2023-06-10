@@ -1,8 +1,7 @@
 <template>
   <ContentDoc>
     <template #default="{ doc }">
-      <PageTitle>{{ doc.title }}</PageTitle>
-      <ContentRenderer :value="doc" class="prose dark:prose-invert" />
+      <PostPage :post="doc" />
     </template>
     <template #not-found>
       <p>404 not found</p>
