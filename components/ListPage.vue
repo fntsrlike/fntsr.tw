@@ -10,6 +10,7 @@
             {{ page.title_en }}
           </PageSubtitle>
         </div>
+        <PostContent :post="page" />
         <SearchBar v-model="searchValue" placeholder-text="Search announce" />
       </header>
       <main>
