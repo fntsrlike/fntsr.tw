@@ -8,7 +8,7 @@
           :key="content._path"
           class="inline-block px-0"
         >
-          <nuxt-link :to="content._path"> {{ content.title }}</nuxt-link
+          <NuxtLink :to="content._path"> {{ content.title }}</NuxtLink
           ><span v-if="index + 1 < notes.length">、</span>
         </li>
       </ul>

@@ -4,7 +4,7 @@
     <ol>
       <li v-for="content in articles" :key="content._path">
         {{ DateTime.fromISO(content.created_at).toFormat('yyyy-LL-dd') }}
-        <nuxt-link :to="content._path">{{ content.title }}</nuxt-link>
+        <NuxtLink :to="content._path">{{ content.title }}</NuxtLink>
       </li>
     </ol>
   </section>

@@ -6,7 +6,7 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
   <div>
     <div class="header">
       <h1>Routes overview</h1>
-      <nuxt-link to="/">Go back to index</nuxt-link>
+      <NuxtLink to="/">Go back to index</NuxtLink>
     </div>
     <div class="info">
       <h1>There are {{ data.length }} available routes by nuxtjs</h1>
@@ -19,10 +19,10 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
         </tr>
         <tr v-for="content in data" :key="content._path">
           <td>
-            <nuxt-link :to="content._id">{{ content._id }}</nuxt-link>
+            <NuxtLink :to="content._id">{{ content._id }}</NuxtLink>
           </td>
           <td>
-            <nuxt-link :to="content._path">{{ content._path }}</nuxt-link>
+            <NuxtLink :to="content._path">{{ content._path }}</NuxtLink>
           </td>
         </tr>
       </table>
