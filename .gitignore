@@ -8,4 +8,6 @@ node_modules
 dist
 
 # directroies for content
-_write
+_*
+_*/**
+public/attachments/**
