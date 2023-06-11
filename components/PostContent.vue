@@ -1,5 +1,5 @@
 <template>
-  <div class="my-4">
+  <div class="my-4 break-word">
     <ContentRenderer :value="post" class="prose dark:prose-invert" />
   </div>
 </template>
