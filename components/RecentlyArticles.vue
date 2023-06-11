@@ -22,7 +22,7 @@ const props = defineProps({
 
 const articles = await useAsyncData(() =>
   queryContent('articles')
-    .only(['title', 'title_en', 'created_at', 'published_at'])
+    .only(['title', 'title_en', 'created_at', 'published_at', '_path'])
     .limit(props.count)
     .find()
 ).data
