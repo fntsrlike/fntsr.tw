@@ -35,8 +35,16 @@ const props = defineProps<{
 
 const searchValue = ref('')
 
+const list = props.posts.map((post) => {
+  const hasPostTags = !!post.tags
+  if (!hasPostTags) {
+    post.tags = []
+  }
+  return post
+})
+
 const filteredPosts = computed(() => {
-  return props.posts.filter((post: Post) => {
+  return list.filter((post: Post) => {
     const isDraft = !post.published_at
     const isProduct = !process.dev
     if (isProduct && isDraft) {
