@@ -25,6 +25,7 @@
             class="text-xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100"
           >
             {{ item.title }}
+            <DraftBadge v-if="!item.published_at"></DraftBadge>
           </h3>
           <p class="text-gray-800 dark:text-gray-200">
             {{ item.title_en }}
