@@ -37,6 +37,12 @@ const searchValue = ref('')
 
 const filteredPosts = computed(() => {
   return props.posts.filter((post: Post) => {
+    const isDraft = !post.published_at
+    const isProduct = !process.dev
+    if (isProduct && isDraft) {
+      return false
+    }
+
     const tags = post.tags.filter((tag) => !!tag)
     const searchContent =
       post.title +
