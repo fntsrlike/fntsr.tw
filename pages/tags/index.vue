@@ -32,31 +32,44 @@ import { kebabCase, toLower } from 'lodash-es/string'
 
 const tagsCount = {}
 
-const flatten = (tags, key) => {
-  const _tags = tags
-    .map((tag) => {
-      let _tag = tag
-      if (tag[key]) {
-        const flattened = flatten(tag[key])
-        _tag = flattened
+// [TODO]: extract to composable
+const flatten = (tagsList, key) => {
+  const _tags = tagsList
+    .map((element) => {
+      let _e = element
+
+      const whenElementIsPost = typeof element === 'object'
+      if (whenElementIsPost) {
+        if (!element[key]) {
+          // eslint-disable-next-line no-console
+          console.log(`[WARN] "${element._path}" has no "${key}" property`)
+          element[key] = []
+        }
+        const tags = element[key]
+        const flattened = flatten(tags)
+        _e = flattened
       }
 
-      if (typeof key === 'undefined') {
-        _tag = toLower(_tag)
-        tagsCount[_tag] = tagsCount[_tag] ? tagsCount[_tag] + 1 : 1
+      const whenElementIsTag = typeof key === 'undefined'
+      if (whenElementIsTag) {
+        const tag = toLower(_e)
+        tagsCount[tag] = tagsCount[tag] ? tagsCount[tag] + 1 : 1
       }
-
-      return _tag
+      return _e
     })
     .flat(1)
   return _tags
 }
 
 const { data } = await useAsyncData('tags', () =>
-  queryContent('articles').only(['tags']).find()
+  queryContent('/')
+    .only(['tags'])
+    .where({ tags: { $exists: true } })
+    .find()
 )
 
-const articleTags = [...new Set(flatten(data.value, 'tags'))].filter(
-  (tag) => !!tag
-)
+const flat = [...new Set(flatten(data.value, 'tags'))]
+const articleTags = flat.filter((tag) => {
+  return typeof tag === 'string' && tag.length > 0
+})
 </script>
