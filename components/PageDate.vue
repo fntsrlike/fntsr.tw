@@ -8,12 +8,13 @@
       發表於
       {{ DateTime.fromISO(publishedAt).toFormat(dateFormat) }}
     </time>
+    <span v-if="publishedAt && updatedAt"> ，並 </span>
     <time
       v-if="updatedAt"
       :datetime="updatedAt"
       :title="DateTime.fromISO(updatedAt).toFormat(dateTimeFormat)"
     >
-      ，並於
+      於
       {{ DateTime.fromISO(updatedAt).toFormat(dateFormat) }}
       更新
     </time>
@@ -23,8 +24,8 @@
 import { DateTime } from 'luxon'
 
 defineProps<{
-  publishedAt: string
-  updatedAt: string
+  publishedAt: string | null
+  updatedAt: string | null
 }>()
 
 const dateFormat = 'yyyy-LL-dd hh:mm'
