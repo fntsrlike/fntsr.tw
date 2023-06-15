@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-24">
+  <section class="pb-24">
     <div class="divide-y divide-gray-200 dark:divide-gray-700">
       <header class="pb-8 space-y-2 md:space-y-5">
         <div>
