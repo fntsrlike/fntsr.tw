@@ -28,6 +28,6 @@ defineProps<{
   updatedAt: string | null
 }>()
 
-const dateFormat = 'yyyy-LL-dd hh:mm'
-const dateTimeFormat = `${dateFormat} hh:mm`
+const dateFormat = 'yyyy-LL-dd HH:mm'
+const dateTimeFormat = `${dateFormat} HH:mm`
 </script>
