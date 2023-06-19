@@ -12,6 +12,9 @@
 
 <script setup>
 import { DateTime } from 'luxon'
+import { useQuery } from '@/composables/useQuery'
+
+const { quertRecentlyPosts } = useQuery()
 
 const props = defineProps({
   count: {
@@ -19,8 +22,7 @@ const props = defineProps({
     default: 5,
   },
 })
-
 const articles = await useAsyncData(() =>
-  queryContent('announce').limit(props.count).find()
+  quertRecentlyPosts('announce', props.count)
 ).data
 </script>
