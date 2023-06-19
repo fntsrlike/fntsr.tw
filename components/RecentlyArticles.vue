@@ -3,7 +3,9 @@
     <h3>Articles</h3>
     <ol>
       <li v-for="content in articles" :key="content._path">
-        {{ DateTime.fromISO(content.created_at).toFormat('yyyy-LL-dd') }}
+        {{
+          DateTime.fromISO(content.created_at).toLocal().toFormat('yyyy-LL-dd')
+        }}
         <NuxtLink :to="content._path">{{ content.title }}</NuxtLink>
       </li>
     </ol>

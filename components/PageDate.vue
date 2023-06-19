@@ -3,19 +3,19 @@
     <time
       v-if="publishedAt"
       :datetime="publishedAt"
-      :title="DateTime.fromISO(publishedAt).toFormat(dateTimeFormat)"
+      :title="DateTime.fromISO(publishedAt).toLocal().toFormat(dateTimeFormat)"
     >
       發表於
-      {{ DateTime.fromISO(publishedAt).toFormat(dateFormat) }}
+      {{ DateTime.fromISO(publishedAt).toLocal().toFormat(dateFormat) }}
     </time>
     <span v-if="publishedAt && updatedAt"> ，並 </span>
     <time
       v-if="updatedAt"
       :datetime="updatedAt"
-      :title="DateTime.fromISO(updatedAt).toFormat(dateTimeFormat)"
+      :title="DateTime.fromISO(updatedAt).toLocal().toFormat(dateTimeFormat)"
     >
       於
-      {{ DateTime.fromISO(updatedAt).toFormat(dateFormat) }}
+      {{ DateTime.fromISO(updatedAt).toLocal().toFormat(dateFormat) }}
       更新
     </time>
   </div>

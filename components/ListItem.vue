@@ -8,13 +8,17 @@
         class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400"
       >
         <time v-if="item.published_at" dateTime="{{item.published_at}}">
-          {{ DateTime.fromISO(item.published_at).toFormat('yyyy-LL-dd') }}
+          {{
+            DateTime.fromISO(item.published_at).toLocal().toFormat('yyyy-LL-dd')
+          }}
         </time>
         <time
           v-if="!item.published_at && item.created_at"
           dateTime="{{item.created_at}}"
         >
-          {{ DateTime.fromISO(item.created_at).toFormat('yyyy-LL-dd') }}
+          {{
+            DateTime.fromISO(item.created_at).toLocal().toFormat('yyyy-LL-dd')
+          }}
         </time>
       </dd>
     </dl>
