@@ -25,14 +25,20 @@
           >
             <td>{{ index + 1 }}</td>
             <td>
-              {{ DateTime.fromISO(article.created_at).toFormat('yyyy-LL-dd') }}
+              {{
+                DateTime.fromISO(article.created_at)
+                  .toLocal()
+                  .toFormat('yyyy-LL-dd')
+              }}
             </td>
             <td>
               <NuxtLink
                 v-if="article.published_at"
                 :href="`/${article.direct_to}/${DateTime.fromISO(
                   article.created_at
-                ).toFormat('yyyy-LL-dd')}-${article.slug}`"
+                )
+                  .toLocal()
+                  .toFormat('yyyy-LL-dd')}-${article.slug}`"
                 >{{ article.title }}</NuxtLink
               >
               <span v-else>

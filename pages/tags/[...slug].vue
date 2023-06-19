@@ -46,7 +46,7 @@ const filteredPosts = computed(() => {
       post.title_en +
       post.description +
       post.tags.map((tag) => tag.split(' ').join('-')) +
-      DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd')
+      DateTime.fromISO(post.published_at).toLocal().toFormat('yyyy-LL-dd')
     return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
   })
 })
