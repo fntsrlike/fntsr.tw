@@ -54,6 +54,7 @@ const flatten = (tagsList, key) => {
       if (whenElementIsTag) {
         const tag = toLower(_e)
         tagsCount[tag] = tagsCount[tag] ? tagsCount[tag] + 1 : 1
+        _e = tag
       }
       return _e
     })
@@ -65,6 +66,7 @@ const { data } = await useAsyncData('tags', () =>
   queryContent('/')
     .only(['tags'])
     .where({ tags: { $exists: true } })
+    .where({ published_at: { $ne: null } })
     .find()
 )
 
