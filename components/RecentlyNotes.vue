@@ -17,6 +17,10 @@
 </template>
 
 <script setup>
+import { useQuery } from '@/composables/useQuery'
+
+const { queryRecentlyPosts } = useQuery()
+
 const props = defineProps({
   count: {
     type: Number,
@@ -24,7 +28,6 @@ const props = defineProps({
   },
 })
 
-const notes = await useAsyncData(() =>
-  queryContent('notes').limit(props.count).find()
-).data
+const notes = await useAsyncData(() => queryRecentlyPosts('notes', props.count))
+  .data
 </script>
