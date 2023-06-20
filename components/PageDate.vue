@@ -8,13 +8,13 @@
       發表於
       {{ DateTime.fromISO(publishedAt).toLocal().toFormat(dateFormat) }}
     </time>
-    <span v-if="publishedAt && updatedAt"> ，並 </span>
+
     <time
       v-if="updatedAt"
       :datetime="updatedAt"
       :title="DateTime.fromISO(updatedAt).toLocal().toFormat(dateTimeFormat)"
     >
-      於
+      <span v-if="publishedAt"> ，並</span>於
       {{ DateTime.fromISO(updatedAt).toLocal().toFormat(dateFormat) }}
       更新
     </time>
