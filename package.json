@@ -1,10 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "build": "./bin/build.sh",
+    "sync": "./bin/sync-attachments.sh",
+    "build": "pnpm run sync && pnpm run build:manual",
     "build:manual": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "pnpm run sync && pnpm run generate:manual",
+    "generate:manual": "nuxt generate",
     "lint": "eslint --ext .ts,.js,.vue .",
     "slint": "stylelint \"**/*.css\"",
     "preview": "nuxt preview",
