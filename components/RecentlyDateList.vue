@@ -32,6 +32,4 @@ const props = defineProps({
 })
 
 const posts = await quertRecentlyPosts(props.type, props.count)
-
-console.log(posts.value)
 </script>
