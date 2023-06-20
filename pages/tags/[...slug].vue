@@ -22,17 +22,14 @@
 <script setup>
 import { ref } from 'vue'
 import { DateTime } from 'luxon'
+import { useQuery } from '@/composables/useQuery'
 
 const route = useRoute()
 const searchValue = ref('')
 const tag = route.params.slug.toString()
 
-const { data } = await useAsyncData(() =>
-  queryContent()
-    .where({ _dir: { $in: ['articles', 'notes'] } })
-    .where({ tags: { $icontains: [tag] } })
-    .find()
-)
+const { queryPostsByTag } = useQuery()
+const { data } = await useAsyncData(() => queryPostsByTag(tag))
 
 const tagPosts = data.value.filter((post) => {
   const tags = post.tags.map((tag) => tag.split(' ').join('-').toLowerCase())

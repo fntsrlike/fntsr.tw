@@ -10,6 +10,14 @@ const queryRecentlyPosts = (type: string, count: number) => {
     .find()
 }
 
+const queryPostsByTag = (tag: string) => {
+  return queryContent()
+    .where({ _dir: { $in: ['articles', 'notes', 'literatures'] } })
+    .where({ tags: { $icontains: tag } })
+    .find()
+}
+
 export const useQuery = () => ({
   queryRecentlyPosts,
+  queryPostsByTag,
 })
