@@ -1,6 +1,6 @@
 ---
 title: "筆記"
-title_en: "Notes"
+title_en: "Permanent Notes"
 slug: "notes"
 aliases:
     - 筆記
