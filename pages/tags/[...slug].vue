@@ -30,7 +30,7 @@ const tag = route.params.slug.toString()
 const { data } = await useAsyncData(() =>
   queryContent()
     .where({ _dir: { $in: ['articles', 'notes'] } })
-    .where({ tags: { $contains: [tag] } })
+    .where({ tags: { $icontains: [tag] } })
     .find()
 )
 
