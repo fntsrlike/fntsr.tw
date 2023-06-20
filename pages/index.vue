@@ -20,5 +20,10 @@
       :count="5"
     ></RecentlyDateList>
     <RecentlyNameList title="Notes" type="notes" :count="5"></RecentlyNameList>
+    <RecentlyDateList
+      title="Literatures"
+      type="literatures"
+      :count="5"
+    ></RecentlyDateList>
   </div>
 </template>
