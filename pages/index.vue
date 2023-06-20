@@ -9,8 +9,16 @@
       </template>
     </ContentDoc>
     <h2>Recently</h2>
-    <RecentlyAnnounce :count="3"></RecentlyAnnounce>
-    <RecentlyArticles :count="5"></RecentlyArticles>
-    <RecentlyNotes :count="5"></RecentlyNotes>
+    <RecentlyDateList
+      title="Announce"
+      type="announce"
+      :count="5"
+    ></RecentlyDateList>
+    <RecentlyDateList
+      title="Articles"
+      type="articles"
+      :count="5"
+    ></RecentlyDateList>
+    <RecentlyNameList title="Notes" type="notes" :count="5"></RecentlyNameList>
   </div>
 </template>
