@@ -22,8 +22,8 @@ export default defineNitroPlugin((nitroApp) => {
 
   function convertFilePath(line: string) {
     return line
-      .replace('[[public/attachments/', '[[/attachments/')
-      .replace('[[content/', '[[/')
+      .replaceAll('[[public/attachments/', '[[/attachments/')
+      .replaceAll('[[content/', '[[/')
   }
 
   function convertImageMarkdown(
@@ -31,7 +31,7 @@ export default defineNitroPlugin((nitroApp) => {
     imageSizeRegExp: RegExp,
     renderRegExp: RegExp
   ) {
-    return line.replace(renderRegExp, (match, imgPath, imgAlias) => {
+    return line.replaceAll(renderRegExp, (match, imgPath, imgAlias) => {
       let style = ''
       const imgSizeMatch = imageSizeRegExp.exec(match)
 
@@ -50,7 +50,7 @@ export default defineNitroPlugin((nitroApp) => {
   }
 
   function convertLinkMarkdown(line: string, linkRegExp: RegExp) {
-    return line.replace(linkRegExp, (_, linkPath, linkAlias) => {
+    return line.replaceAll(linkRegExp, (_, linkPath, linkAlias) => {
       const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
       return linkMarkdown
     })
