@@ -6,9 +6,8 @@ export default <Partial<Config>>{
   mode: 'jit',
   theme: {
     extend: {
-      typography: {
+      typography: (theme: Function) => ({
         DEFAULT: {
-          // this is for prose class
           css: {
             a: {
               'text-decoration': 'none',
@@ -19,7 +18,12 @@ export default <Partial<Config>>{
             },
           },
         },
-      },
+        invert: {
+          css: {
+            color: theme('colors.gray.50'),
+          },
+        },
+      }),
     },
   },
 }
