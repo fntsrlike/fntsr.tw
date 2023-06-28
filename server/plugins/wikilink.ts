@@ -6,7 +6,7 @@ export default defineNitroPlugin((nitroApp) => {
 
     let isInCodeBlock = false
     const convertedLines = text.split('\n').map((line) => {
-      const isCodeBlockSyntax = line.startsWith('```')
+      const isCodeBlockSyntax = line.startsWith('```') || line.startsWith('~~~')
       isInCodeBlock = isCodeBlockSyntax ? !isInCodeBlock : isInCodeBlock
 
       if (!isInCodeBlock) {
