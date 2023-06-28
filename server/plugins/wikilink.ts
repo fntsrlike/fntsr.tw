@@ -1,7 +1,7 @@
 export default defineNitroPlugin((nitroApp) => {
   function convertWikiLink(text: string): string {
     const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
-    const linkRegExp = /\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
+    const linkRegExp = /\[\[([\w/.\-_ ]+)\|?([^\[\]]+)?\]\]/g
     const imageSizeRegExp = /!\[\[[\w/.\-_ ]+\|(\d+)(?:[xX](\d+))?\]\]/
 
     let isInCodeBlock = false
@@ -51,8 +51,10 @@ export default defineNitroPlugin((nitroApp) => {
 
   function convertLinkMarkdown(line: string, linkRegExp: RegExp) {
     return line.replaceAll(linkRegExp, (_, linkPath, linkAlias) => {
+      const isExist = linkPath.startsWith('/')
+      const unExistNoteLink = linkAlias || linkPath
       const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
-      return linkMarkdown
+      return isExist ? linkMarkdown : unExistNoteLink
     })
   }
 
