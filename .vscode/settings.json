@@ -5,5 +5,8 @@
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.includeLanguages": {
     "vue": "html"
-  }
+  },
+  "cSpell.words": [
+    "Nuxt"
+  ]
 }
