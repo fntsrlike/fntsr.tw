@@ -12,4 +12,11 @@ interface Post extends ParsedContent {
   tags: string[]
 }
 
-export {Post}
+interface ToC {
+  children: ToC[]
+  depth: number
+  id: string
+  text: string
+}
+
+export {Post, ToC}
