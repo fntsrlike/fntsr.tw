@@ -32,7 +32,7 @@ export default <Partial<Config>>{
         },
         invert: {
           css: {
-            color: theme('colors.gray.50'),
+            color: theme('colors.gray.300'),
           },
         },
       }),
