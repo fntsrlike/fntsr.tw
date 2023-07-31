@@ -10,6 +10,7 @@ interface Post extends ParsedContent {
   published_at: string
   updated_at: string
   tags: string[]
+  draft: boolean
 }
 
 interface ToC {

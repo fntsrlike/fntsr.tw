@@ -27,12 +27,14 @@
 import { ref } from 'vue'
 import { DateTime } from 'luxon'
 import { Post } from '@/types/index'
+import { usePost } from '@/composables/usePost'
 
 const props = defineProps<{
   page: Post
   posts: Post[]
 }>()
 
+const { isDraft } = usePost()
 const searchValue = ref('')
 
 const list = props.posts.map((post) => {
@@ -45,9 +47,8 @@ const list = props.posts.map((post) => {
 
 const filteredPosts = computed(() => {
   return list.filter((post: Post) => {
-    const isDraft = !post.published_at
     const isProduct = !process.dev
-    if (isProduct && isDraft) {
+    if (isProduct && isDraft(post)) {
       return false
     }
 

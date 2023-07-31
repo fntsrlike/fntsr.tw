@@ -29,7 +29,7 @@
             class="text-xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100"
           >
             {{ item.title }}
-            <DraftBadge v-if="!item.published_at"></DraftBadge>
+            <DraftBadge v-if="isDraft(item)"></DraftBadge>
           </h3>
           <p class="text-gray-800 dark:text-gray-200">
             {{ item.title_en }}
@@ -48,6 +48,9 @@
 <script setup lang="ts">
 import { DateTime } from 'luxon'
 import { Post } from '@/types/index'
+import { usePost } from '@/composables/usePost'
+
+const { isDraft } = usePost()
 
 defineProps<{
   item: Post
