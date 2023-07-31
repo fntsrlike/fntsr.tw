@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div v-if="toc.length > 0">
     <div class="text-2xl">ToC</div>
 
     <ul class="list-disc list-inside">
