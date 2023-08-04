@@ -9,6 +9,9 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     },
   },
+  appConfig: {
+    buildTime: process.env.BUILD_TIME || '',
+  },
   modules: [
     '@nuxt/content',
     '@nuxtjs/color-mode',
