@@ -65,12 +65,40 @@ jobs:
   deploy-to-github-pages:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.github-deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: github-deployment
         uses: actions/deploy-pages@v2
         with:
           artifact_name: deployment
+
+  deploy-to-netlify:
+    environment:
+      name: production
+      url: ${{ steps.netlify-deployment.outputs.NETLIFY_LIVE_URL }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: deployment
+      - name: Extract artifact
+        shell: bash
+        run: |
+          mkdir dist
+          tar xf artifact.tar -C ./dist
+      - name: Deploy to Netlify
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
+        id: netlify-deployment
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_TO_PROD: true
+          NETLIFY_DEPLOY_MESSAGE: "Deployed with ${{ vars.GITHUB_SHA }} by GitHub Actions #${{ vars.GITHUB_RUN_ID }} "
+          build_directory: dist
+          install_command: "echo 'Skipping installing the dependencies'"
+          build_command: "echo 'Skipping building the web files'"
