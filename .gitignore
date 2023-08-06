@@ -10,4 +10,5 @@ dist
 # directroies for content
 _*
 _*/**
+!*/**/_*
 public/attachments/**
