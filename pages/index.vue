@@ -33,7 +33,7 @@
       <RecentlyNameList
         title="Notes"
         type="notes"
-        :count="5"
+        :count="20"
       ></RecentlyNameList>
       <RecentlyDateList
         title="Literatures"
