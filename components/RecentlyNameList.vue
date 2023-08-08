@@ -2,11 +2,11 @@
   <section>
     <h3>{{ title }}</h3>
     <div>
-      <ul class="list-none px-0">
+      <ul class="list-disc md:list-none md:px-2">
         <li
           v-for="(post, index) in posts"
           :key="post._path"
-          class="inline-block px-0"
+          class="md:inline-block md:px-0"
         >
           <NuxtLink :to="post._path"> {{ post.title }}</NuxtLink
           ><span v-if="index + 1 < posts.length">、</span>
