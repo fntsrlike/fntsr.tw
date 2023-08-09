@@ -24,6 +24,8 @@ export default defineNitroPlugin((nitroApp) => {
     return line
       .replaceAll('[[public/attachments/', '[[/attachments/')
       .replaceAll('[[content/', '[[/')
+      .replaceAll('[[/_pages/', '[[/')
+      .replaceAll('/index', '/')
   }
 
   function convertImageMarkdown(
