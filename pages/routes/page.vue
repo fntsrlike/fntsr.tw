@@ -38,9 +38,9 @@
   </div>
 </template>
 <script>
-export default {
+definePageMeta({
   layout: 'pure',
-}
+})
 </script>
 <style>
 .header {

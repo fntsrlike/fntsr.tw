@@ -41,9 +41,9 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
 </template>
 
 <script>
-export default {
+definePageMeta({
   layout: 'pure',
-}
+})
 </script>
 
 <style>
