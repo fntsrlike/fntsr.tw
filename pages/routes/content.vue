@@ -14,15 +14,20 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
     <div>
       <table class="table-auto border-collapse">
         <tr>
-          <th class="text-lg text-center">content._id</th>
-          <th class="text-lg text-center">content._path</th>
+          <th class="text-lg text-center border">source</th>
+          <th class="text-lg text-center border">path</th>
+          <th class="text-lg text-center border">title</th>
         </tr>
-        <tr v-for="content in data" :key="content._path">
-          <td>
-            <NuxtLink :to="content._id">{{ content._id }}</NuxtLink>
+        <tr v-for="content in data" :key="content._id">
+          <td class="px-3 border">
+            {{ content._source }} ::
+            {{ content._path.split('/').slice(0, -1).join('/') }}
           </td>
-          <td>
-            <NuxtLink :to="content._path">{{ content._path }}</NuxtLink>
+          <td class="px-3 border">
+            <span>{{ content._path.split('/').pop() }}</span>
+          </td>
+          <td class="px-3 border">
+            <NuxtLink :to="content._path">{{ content.title }}</NuxtLink>
           </td>
         </tr>
       </table>
