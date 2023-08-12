@@ -2,20 +2,31 @@
   <div v-if="toc.length > 0">
     <div class="text-2xl">ToC</div>
 
-    <ul class="list-disc list-inside">
-      <template v-for="link of toc" :key="link.id">
+    <ol class="list-outside text-sm">
+      <template v-for="primaryLink of toc" :key="primaryLink.id">
         <li class="toc2">
-          <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+          <NuxtLink
+            class="font-normal text-slate-700 dark:text-gray-400"
+            :to="`#${primaryLink.id}`"
+          >
+            {{ primaryLink.text }}
+          </NuxtLink>
         </li>
-        <li
-          v-for="depth3Link of link.children"
-          :key="depth3Link.id"
-          class="pl-4"
-        >
-          <NuxtLink :to="`#${depth3Link.id}`">{{ depth3Link.text }}</NuxtLink>
-        </li>
+        <ol v-if="primaryLink.children" class="list-outside text-sm">
+          <li
+            v-for="secondaryLink of primaryLink.children"
+            :key="secondaryLink.id"
+          >
+            <NuxtLink
+              class="font-normal text-slate-700 dark:text-gray-400"
+              :to="`#${secondaryLink.id}`"
+            >
+              {{ secondaryLink.text }}
+            </NuxtLink>
+          </li>
+        </ol>
       </template>
-    </ul>
+    </ol>
   </div>
 </template>
 
