@@ -24,6 +24,7 @@ export default defineNitroPlugin((nitroApp) => {
     return line
       .replaceAll('[[public/attachments/', '[[/attachments/')
       .replaceAll('[[content/', '[[/')
+      .replaceAll(/\[\[content-\w+\//g, '[[/')
       .replaceAll('[[/_pages/', '[[/')
       .replaceAll('/index', '/')
   }
