@@ -1,7 +1,3 @@
-<script setup>
-const { data } = await useAsyncData('home', () => queryContent('/').find())
-</script>
-
 <template>
   <div>
     <div>
@@ -49,4 +45,6 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
 definePageMeta({
   layout: 'info',
 })
+
+const { data } = await useAsyncData('home', () => queryContent('/').find())
 </script>
