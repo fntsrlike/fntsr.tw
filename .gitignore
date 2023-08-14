@@ -12,3 +12,6 @@ _*
 _*/**
 !*/**/_*
 public/attachments/**
+
+# Local Netlify folder
+.netlify
