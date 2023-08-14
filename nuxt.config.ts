@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import sources from './source.config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -29,12 +29,7 @@ export default defineNuxtConfig({
   content: {
     // https://content.nuxtjs.org/api/configuration
     documentDriven: true,
-    sources: {
-      garden: {
-        driver: 'fs',
-        base: resolve(__dirname, '_write/content'),
-      },
-    },
+    sources,
 
     highlight: {
       // Theme used in all color schemes.
