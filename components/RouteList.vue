@@ -13,16 +13,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="content in data" :key="content._id">
+          <tr v-for="content in data" :key="content.id">
             <td class="px-3 border">
-              {{ content._source }} ::
-              {{ content._path.split('/').slice(0, -1).join('/') }}
+              {{ content.source }}
             </td>
             <td class="px-3 border">
-              <span>{{ content._path.split('/').pop() }}</span>
+              <span>{{ content.path }}</span>
             </td>
             <td class="px-3 border">
-              <NuxtLink :to="content._path">{{ content.title }}</NuxtLink>
+              <NuxtLink :to="content.path">{{ content.name }}</NuxtLink>
             </td>
           </tr>
         </tbody>
