@@ -40,7 +40,7 @@ const { data } = await useAsyncData('home', () => queryContent('/').find())
   </div>
 </template>
 
-<script>
+<script setup>
 definePageMeta({
   layout: 'pure',
 })
