@@ -46,5 +46,7 @@ definePageMeta({
   layout: 'info',
 })
 
-const { data } = await useAsyncData('home', () => queryContent('/').find())
+const { data } = await useAsyncData('home', () =>
+  queryContent('/').sort({ _dir: 1, _source: 1 }).find()
+)
 </script>
