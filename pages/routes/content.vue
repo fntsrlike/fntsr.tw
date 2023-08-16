@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <div>
-      <h1>Routes overview</h1>
-      <NuxtLink to="/">Go back to index</NuxtLink>
+  <div class="my-5">
+    <div class="my-5">
+      <h1 class="text-2xl">Content Routes Overview</h1>
+      <ul>
+        <li><NuxtLink to="/">Go back to index</NuxtLink>.</li>
+        <li><NuxtLink to="/routes/page">Go to page routes</NuxtLink>.</li>
+      </ul>
     </div>
     <RouteList :data="items" />
   </div>
