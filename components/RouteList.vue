@@ -18,10 +18,14 @@
               {{ content.source }}
             </td>
             <td class="px-3 border">
-              <span>{{ content.path }}</span>
+              <NuxtLink :to="content.dir || content.path">
+                {{ content.dir || content.path }}
+              </NuxtLink>
             </td>
             <td class="px-3 border">
-              <NuxtLink :to="content.path">{{ content.name }}</NuxtLink>
+              <NuxtLink :to="content.path">
+                {{ content.name ? content.name : 'Undefined' }}
+              </NuxtLink>
             </td>
           </tr>
         </tbody>
