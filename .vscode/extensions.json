@@ -1,11 +1,20 @@
 {
     "recommendations": [
         "vue.vscode-typescript-vue-plugin",
-        "vue.volar",
         "dbaeumer.vscode-eslint",
         "editorconfig.editorconfig",
         "stylelint.vscode-stylelint",
         "bradlc.vscode-tailwindcss",
-        "nuxt.mdc"
+        "nuxt.mdc",
+        "kamikillerto.vscode-colorize",
+        "hex-ci.stylelint-plus",
+        "github.vscode-github-actions",
+        "github.copilot",
+        "github.copilot-labs",
+        "github.copilot-chat",
+        "eamodio.gitlens",
+        "humao.rest-client",
+        "octref.vetur",
+        "sdras.vue-vscode-snippets"
     ]
 }
