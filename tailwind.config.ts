@@ -11,6 +11,7 @@ const em = (px: number, base: number) => `${round(px / base)}em`
 export default <Partial<Config>>{
   plugins: [require('@tailwindcss/typography')],
   darkMode: 'class',
+  content: ['./pages/**/*.vue', './components/**/*.vue', './layouts/*.vue'],
   mode: 'jit',
   theme: {
     extend: {
