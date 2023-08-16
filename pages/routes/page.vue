@@ -39,7 +39,7 @@
 </template>
 <script setup>
 definePageMeta({
-  layout: 'pure',
+  layout: 'info',
 })
 </script>
 <style>
