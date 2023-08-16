@@ -1,5 +1,5 @@
 <template>
-  <ContentDoc v-slot="{ doc }" :path="`_pages/${slug}`">
+  <ContentDoc v-slot="{ doc }">
     <ListPage :page="doc" :posts="data" />
   </ContentDoc>
 </template>
@@ -9,7 +9,7 @@ const slug = route.name
 
 const { data } = await useAsyncData(() =>
   queryContent(slug)
-    .where({ slug: { $ne: slug } })
+    .where({ slug: { $ne: slug }, _file: { $not: { $contains: 'index' } } })
     .sort({ created_at: -1, published_at: -1 })
     .find()
 )
