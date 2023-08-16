@@ -21,10 +21,16 @@ const { data } = await useAsyncData('home', () =>
 )
 
 const items = data.value.map((content) => {
+  let filename = content._file.split('/').pop()
+  filename = filename.length <= 20 ? filename : filename.slice(0, 12) + '...'
+  let path = content._file.split('/').slice(0, -1).join('/')
+  path = path ? `/${path}/` : '/'
+
   return {
     id: content._id,
     source: content._source,
-    path: content._path.split('/').slice(0, -1).join('/'),
+    path: content._path,
+    dir: path + filename,
     name: content.title,
   }
 })
