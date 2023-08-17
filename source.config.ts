@@ -11,6 +11,7 @@ const devSrc = genSource('_write/content-dev')
 const pagesSrc = genSource('_write/content')
 const gardenSrc = genSource('_write/content-garden')
 const legacySrc = genSource('_write/content-legacy')
+const draftSrc = genSource('_write/content-draft')
 
 const sources: any = {}
 sources.garden = gardenSrc // basic content
@@ -19,6 +20,7 @@ sources.pages = pagesSrc // page's content
 // To experience
 if (process.env.NODE_ENV === 'development') {
   sources.zDev = devSrc
+  sources.draft = draftSrc
 }
 
 // Increase dev performance to avoid load lots of content
