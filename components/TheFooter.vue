@@ -21,10 +21,10 @@
         <DevOnly>
           <li>
             <NuxtLink
-              to="/sandbox"
+              to="/dev"
               class="font-medium text-gray-500 hover:text-gray-900 focus:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 dark:focus:text-gray-300"
             >
-              Sandbox
+              Dev
             </NuxtLink>
           </li>
         </DevOnly>
