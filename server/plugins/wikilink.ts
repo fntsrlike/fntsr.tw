@@ -48,7 +48,7 @@ export default defineNitroPlugin((nitroApp) => {
 
       const filename = imgPath.split('/').pop()
       const alias = imgSizeMatch || !imgAlias ? filename : imgAlias
-      const imgMarkdown = `![${alias}](${imgPath})${style}`
+      const imgMarkdown = `![${alias}](<${imgPath}>)${style}`
       return imgMarkdown
     })
   }
@@ -57,7 +57,7 @@ export default defineNitroPlugin((nitroApp) => {
     return line.replaceAll(linkRegExp, (_, linkPath, linkAlias) => {
       const isExist = linkPath.startsWith('/')
       const unExistNoteLink = linkAlias || linkPath
-      const linkMarkdown = `[${linkAlias || linkPath}](${linkPath})`
+      const linkMarkdown = `[${linkAlias || linkPath}](<${linkPath}>)`
       return isExist ? linkMarkdown : unExistNoteLink
     })
   }
