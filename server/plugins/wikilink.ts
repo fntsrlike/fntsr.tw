@@ -1,7 +1,23 @@
 export default defineNitroPlugin((nitroApp) => {
   function convertWikiLink(text: string): string {
+    const regExpSets = {
+      han: /\u4E00-\u9FFF/,         // 中文漢字的 Unicode 範圍
+      hanExtend: /\u3400-\u4DBF/,   // 中文擴展 A 的 Unicode 範圍
+      jpKana: /\u3040-\u30FF/,      // 日文平假名和片假名的 Unicode 範圍
+      krHangul: /\uAC00-\uD7AF/,    // 韓文字母的 Unicode 範圍
+      enCommon: /\w\-./,            // 所有的英文字母、數字、底線字元、破折號、小數點
+      symbol: /%\\\//,              // 百分比字元、斜線與反斜線字元。
+      space: /\s/,                  // 空白字元（如空格和 Tab 字元）
+    }
+    const pattermSource = regExpSets.enCommon.source
+                        + regExpSets.symbol.source
+                        + regExpSets.space.source
+                        + regExpSets.han.source
+                        + regExpSets.hanExtend.source
+    const pathPattern = new RegExp(pattermSource)
+
+    const linkRegExp = new RegExp(`\\[\\[([${pathPattern.source}]+)\\|?([^\\[\\]]+)?\\]\\]`, 'g')
     const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
-    const linkRegExp = /\[\[([\w/.\-_ ]+)\|?([^\[\]]+)?\]\]/g
     const imageSizeRegExp = /!\[\[[\w/.\-_ ]+\|(\d+)(?:[xX](\d+))?\]\]/
 
     let isInCodeBlock = false
@@ -57,9 +73,13 @@ export default defineNitroPlugin((nitroApp) => {
     return line.replaceAll(linkRegExp, (_, linkPath, linkAlias) => {
       const isExist = linkPath.startsWith('/')
       const unExistNoteLink = linkAlias || linkPath
-      const linkMarkdown = `[${linkAlias || linkPath}](<${linkPath}>)`
+      const linkMarkdown = `[${linkAlias || linkPath}](<${encondingNoneAlphabetUrl(linkPath)}>)`
       return isExist ? linkMarkdown : unExistNoteLink
     })
+  }
+
+  function encondingNoneAlphabetUrl(line: string) {
+    return line.split('/').map((str) => encodeURIComponent(str).replaceAll('%25', '%')).join('/')
   }
 
   nitroApp.hooks.hook('content:file:beforeParse', (file) => {
