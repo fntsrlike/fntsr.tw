@@ -1,4 +1,13 @@
 export default defineNitroPlugin((nitroApp) => {
+  function encondingNoneAlphabetUrl(line: string) {
+    return line.split('/').map((str) => encodeURIComponent(str)).join('/')
+  }
+
+  function isHan(filename: string) {
+    const charHan = /[\u4E00-\u9FFF\u3400-\u4DBF]+/
+    return charHan.test(filename)
+  }
+
   function isCustomSlug(slug: string | undefined) {
     return !(typeof slug === 'undefined' || slug === '...')
   }
@@ -12,6 +21,12 @@ export default defineNitroPlugin((nitroApp) => {
 
     if (isCustomSlug(file.slug)) {
       file._path = `/${path}/${file.slug}`
+      return
+    }
+
+    if (isHan(file._file)) {
+      const filename = file._file.split('/').pop().replace('.md', '')
+      file._path = `/${path}/${encondingNoneAlphabetUrl(filename)}`
       return
     }
   })
