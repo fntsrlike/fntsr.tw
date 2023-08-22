@@ -5,7 +5,7 @@
 </template>
 <script setup>
 const route = useRoute()
-const slug = route.name
+const slug = route.fullPath
 
 const { data } = await useAsyncData(() =>
   queryContent(slug)
