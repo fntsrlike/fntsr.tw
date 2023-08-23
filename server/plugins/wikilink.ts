@@ -23,6 +23,7 @@ export default defineNitroPlugin((nitroApp) => {
   function convertFilePath(line: string) {
     return line
       .replaceAll('[[public/attachments/', '[[/attachments/')
+      .replaceAll('[[public/images/', '[[/images/')
       .replaceAll('[[content/', '[[/')
       .replaceAll(/\[\[content-\w+\//g, '[[/')
       .replaceAll('[[/_pages/', '[[/')
