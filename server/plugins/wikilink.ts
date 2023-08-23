@@ -58,8 +58,9 @@ export default defineNitroPlugin((nitroApp) => {
     const regExp = wikiLinkRegExp()
     return line.replaceAll(regExp, (_, linkPath, linkAlias) => {
       const isExist = linkPath.startsWith('/')
+      const filename = linkPath.split('/').pop()
       const unExistNoteLink = linkAlias || linkPath
-      const linkMarkdown = `[${linkAlias || linkPath}](<${encondingNoneAlphabetUrl(linkPath)}>)`
+      const linkMarkdown = `[${linkAlias || filename}](<${encondingNoneAlphabetUrl(linkPath)}>)`
       return isExist ? linkMarkdown : unExistNoteLink
     })
   }
