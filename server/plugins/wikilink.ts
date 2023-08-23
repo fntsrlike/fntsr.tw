@@ -19,7 +19,6 @@ export default defineNitroPlugin((nitroApp) => {
 
     const linkRegExp = new RegExp(`\\[\\[([${pathPattern.source}]+)\\|?([^\\[\\]]+)?\\]\\]`, 'g')
     const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
-    const imageSizeRegExp = /!\[\[[\w/.\-_ ]+\|(\d+)(?:[xX](\d+))?\]\]/
 
     let isInCodeBlock = false
     const convertedLines = text.split('\n').map((line) => {
@@ -28,7 +27,7 @@ export default defineNitroPlugin((nitroApp) => {
 
       if (!isInCodeBlock) {
         line = convertFilePath(line)
-        line = convertImageMarkdown(line, imageSizeRegExp, renderRegExp)
+        line = convertImageMarkdown(line, renderRegExp)
         line = convertLinkMarkdown(line, linkRegExp)
       }
       return line
@@ -49,25 +48,32 @@ export default defineNitroPlugin((nitroApp) => {
 
   function convertImageMarkdown(
     line: string,
-    imageSizeRegExp: RegExp,
-    renderRegExp: RegExp
+    renderRegExp: RegExp,
   ) {
-    return line.replaceAll(renderRegExp, (match, imgPath, imgAlias) => {
-      let style = ''
-      const imgSizeMatch = imageSizeRegExp.exec(match)
-
-      if (imgSizeMatch !== null) {
-        const [, width, height] = imgSizeMatch
-        const styleWidth = width ? `width=${width}px` : ''
-        const styleHeight = height ? `height=${height}px` : ''
-        style = `{ ${styleWidth} ${styleHeight} }`
-      }
-
+    return line.replaceAll(renderRegExp, (_, imgPath, imgAlias) => {
+      const style = sizeToStyle(imgAlias)
       const filename = imgPath.split('/').pop()
-      const alias = imgSizeMatch || !imgAlias ? filename : imgAlias
+      const alias = style !== '' ? filename : imgAlias
       const imgMarkdown = `![${alias}](<${imgPath}>)${style}`
       return imgMarkdown
     })
+  }
+
+  function sizeToStyle(alias: string) {
+    if (!alias) {
+      return ''
+    }
+
+    const sizeRegExp = /(\d+)?(?:[xX](\d+))?/
+    const sizeMatch = sizeRegExp.exec(alias)
+    if (sizeMatch == null || sizeMatch[0] == '') {
+      return ''
+    }
+
+    const [ _, width, height] = sizeMatch
+    const styleWidth = width ? `width=${width}px` : ''
+    const styleHeight = height ? `height=${height}px` : ''
+    return `{ ${styleWidth} ${styleHeight} }`
   }
 
   function convertLinkMarkdown(line: string, linkRegExp: RegExp) {
