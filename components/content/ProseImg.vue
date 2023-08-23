@@ -1,6 +1,6 @@
 <template>
   <a :href="refinedSrc" target="_blank">
-    <img :src="refinedSrc" :alt="alt" :width="width" :height="height" />
+    <img :src="refinedSrc" :alt="alt" :style="style" />
   </a>
 </template>
 
@@ -32,5 +32,11 @@ const refinedSrc = computed(() => {
     return withBase(props.src, useRuntimeConfig().app.baseURL)
   }
   return props.src
+})
+
+const style = computed(() => {
+  const width = props.width ? `width:${props.width};` : ''
+  const height = props.height ? `height:${props.height};` : ''
+  return `${width} ${height};`
 })
 </script>
