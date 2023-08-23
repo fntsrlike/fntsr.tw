@@ -28,10 +28,17 @@ const props = defineProps({
 })
 
 const refinedSrc = computed(() => {
-  if (props.src?.startsWith('/') && !props.src.startsWith('//')) {
-    return withBase(props.src, useRuntimeConfig().app.baseURL)
+  if (!props.src) {
+    return ''
   }
-  return props.src
+
+  let src = props.src.replaceAll(/^public\//g, '/')
+
+  if (src.startsWith('/') && !src.startsWith('//')) {
+    return withBase(src, useRuntimeConfig().app.baseURL)
+  }
+
+  return src
 })
 
 const style = computed(() => {
