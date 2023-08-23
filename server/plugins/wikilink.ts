@@ -9,12 +9,13 @@ export default defineNitroPlugin((nitroApp) => {
       symbol: /%\\\//,              // 百分比字元、斜線與反斜線字元。
       space: /\s/,                  // 空白字元（如空格和 Tab 字元）
     }
-    const pattermSource = regExpSets.enCommon.source
-                        + regExpSets.symbol.source
-                        + regExpSets.space.source
-                        + regExpSets.han.source
-                        + regExpSets.hanExtend.source
-    const pathPattern = new RegExp(pattermSource)
+    const pathPattern = new RegExp([
+      regExpSets.enCommon.source,
+      regExpSets.symbol.source,
+      regExpSets.space.source,
+      regExpSets.han.source,
+      regExpSets.hanExtend.source,
+    ].join(''))
 
     const linkRegExp = new RegExp(`\\[\\[([${pathPattern.source}]+)\\|?([^\\[\\]]+)?\\]\\]`, 'g')
     const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
