@@ -16,9 +16,10 @@ export default defineNitroPlugin((nitroApp) => {
       regExpSets.han.source,
       regExpSets.hanExtend.source,
     ].join(''))
+    const aliasPattern = /[^\[\]]+/
 
-    const linkRegExp = new RegExp(`\\[\\[([${pathPattern.source}]+)\\|?([^\\[\\]]+)?\\]\\]`, 'g')
-    const renderRegExp = /!\[\[([\w/.\-_ ]+)\|?([^[\]]+)?\]\]/g
+    const linkRegExp = wikiLinkRegExpComposite(`[${pathPattern.source}]+`, aliasPattern.source)
+    const renderRegExp = wikiLinkRegExpComposite(`[${pathPattern.source}]+`, aliasPattern.source, true)
 
     let isInCodeBlock = false
     const convertedLines = text.split('\n').map((line) => {
@@ -87,6 +88,12 @@ export default defineNitroPlugin((nitroApp) => {
 
   function encondingNoneAlphabetUrl(line: string) {
     return line.split('/').map((str) => encodeURIComponent(str).replaceAll('%25', '%')).join('/')
+  }
+
+  const wikiLinkRegExpComposite = function (path: string, alias: string, isRender = false) {
+    const renderSymbol = isRender ? '!' : ''
+    const re = `${renderSymbol}\\[\\[\\<?(${path})\\>?(?:\\|(${alias}))\\]\\]`
+    return new RegExp(re, 'g')
   }
 
   nitroApp.hooks.hook('content:file:beforeParse', (file) => {
