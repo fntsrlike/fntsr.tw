@@ -18,6 +18,9 @@ export default defineNitroPlugin((nitroApp) => {
 
   function convertFilePath(line: string) {
     return line
+      .replaceAll(/\[\[<(.+)>/g, (_, captureGroup) => {
+        return "[[" + captureGroup;
+      })
       .replaceAll('[[public/attachments/', '[[/attachments/')
       .replaceAll('[[public/images/', '[[/images/')
       .replaceAll('[[content/', '[[/')
@@ -84,7 +87,7 @@ export default defineNitroPlugin((nitroApp) => {
     const pathSets = new RegExp([
       regExpSets.enCommon.source,
       regExpSets.symbol.source,
-      // regExpSets.angle.source, // TODO: support angle in path
+      regExpSets.angle.source,
       regExpSets.space.source,
       regExpSets.han.source,
       regExpSets.hanExtend.source,
