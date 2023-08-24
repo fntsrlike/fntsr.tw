@@ -1,4 +1,10 @@
 export default defineNitroPlugin((nitroApp) => {
+  nitroApp.hooks.hook('content:file:beforeParse', (file) => {
+    if (file._id.endsWith('.md')) {
+      file.body = convertWikiLink(file.body)
+    }
+  })
+
   function convertWikiLink(text: string): string {
     let isInCodeBlock = false
     const convertedLines = text.split('\n').map((line) => {
@@ -40,6 +46,21 @@ export default defineNitroPlugin((nitroApp) => {
     })
   }
 
+  function convertLinkMarkdown(line: string) {
+    const regExp = wikiLinkRegExp()
+    return line.replaceAll(regExp, (_, linkPath, linkAlias) => {
+      const isExist = linkPath.startsWith('/')
+      const filename = linkPath.split('/').pop()
+      const unExistNoteLink = linkAlias || linkPath
+      const linkMarkdown = `[${linkAlias || filename}](<${encondingNoneAlphabetUrl(linkPath)}>)`
+      return isExist ? linkMarkdown : unExistNoteLink
+    })
+  }
+
+  function encondingNoneAlphabetUrl(line: string) {
+    return line.split('/').map((str) => encodeURIComponent(str).replaceAll('%25', '%')).join('/')
+  }
+
   function sizeToStyle(alias: string) {
     if (!alias) {
       return ''
@@ -55,21 +76,6 @@ export default defineNitroPlugin((nitroApp) => {
     const styleWidth = width ? `width=${width}px` : ''
     const styleHeight = height ? `height=${height}px` : ''
     return `{ ${styleWidth} ${styleHeight} }`
-  }
-
-  function convertLinkMarkdown(line: string) {
-    const regExp = wikiLinkRegExp()
-    return line.replaceAll(regExp, (_, linkPath, linkAlias) => {
-      const isExist = linkPath.startsWith('/')
-      const filename = linkPath.split('/').pop()
-      const unExistNoteLink = linkAlias || linkPath
-      const linkMarkdown = `[${linkAlias || filename}](<${encondingNoneAlphabetUrl(linkPath)}>)`
-      return isExist ? linkMarkdown : unExistNoteLink
-    })
-  }
-
-  function encondingNoneAlphabetUrl(line: string) {
-    return line.split('/').map((str) => encodeURIComponent(str).replaceAll('%25', '%')).join('/')
   }
 
   const wikiLinkRegExp = function (isRender = false) {
@@ -100,10 +106,4 @@ export default defineNitroPlugin((nitroApp) => {
     const re = `${renderSymbol}\\[\\[\\<?(${pathPattern})\\>?(?:\\|(${aliasPattern}))?\\]\\]`
     return new RegExp(re, 'g')
   }
-
-  nitroApp.hooks.hook('content:file:beforeParse', (file) => {
-    if (file._id.endsWith('.md')) {
-      file.body = convertWikiLink(file.body)
-    }
-  })
 })
