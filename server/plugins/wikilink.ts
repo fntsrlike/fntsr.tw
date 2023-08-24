@@ -13,7 +13,7 @@ export default defineNitroPlugin((nitroApp) => {
 
       if (!isInCodeBlock) {
         line = convertFilePath(line)
-        line = convertImageMarkdown(line)
+        line = convertRenderMarkdown(line)
         line = convertLinkMarkdown(line)
       }
       return line
@@ -35,7 +35,7 @@ export default defineNitroPlugin((nitroApp) => {
       .replaceAll('/index', '/')
   }
 
-  function convertImageMarkdown(line: string) {
+  function convertRenderMarkdown(line: string) {
     const regExp = wikiLinkRegExp(true)
     return line.replaceAll(regExp, (_, imgPath, imgAlias) => {
       const style = sizeToStyle(imgAlias)
