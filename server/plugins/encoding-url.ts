@@ -16,17 +16,17 @@ export default defineNitroPlugin((nitroApp) => {
     if (!file._id.endsWith('.md')) {
       return
     }
-
-    const path = file._file.split('/').slice(0, -1).join('/')
+    const dir = file._file.replace('/index.md').split('/').slice(0, -1).join('/')
+    const path = dir ? `/${dir}/` : '/'
 
     if (isCustomSlug(file.slug)) {
-      file._path = `/${path}/${file.slug}`
+      file._path = `${path}${file.slug}`
       return
     }
 
     if (isHan(file._file)) {
       const filename = file._file.split('/').pop().replace('.md', '')
-      file._path = `/${path}/${encondingNoneAlphabetUrl(filename)}`
+      file._path = `/${dir}/${encondingNoneAlphabetUrl(filename)}`
       return
     }
   })
