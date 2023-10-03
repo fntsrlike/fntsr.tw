@@ -16,7 +16,7 @@ export default defineNitroPlugin((nitroApp) => {
     if (!file._id.endsWith('.md')) {
       return
     }
-    const dir = file._file.replace('/index.md').split('/').slice(0, -1).join('/')
+    const dir = file._file.replace('/index.md', '').split('/').slice(0, -1).join('/')
     const path = dir ? `/${dir}/` : '/'
 
     if (isCustomSlug(file.slug)) {
