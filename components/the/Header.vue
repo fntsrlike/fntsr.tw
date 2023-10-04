@@ -21,8 +21,8 @@
           {{ link.title }}
         </NuxtLink>
       </nav>
-      <ThemeToggle />
-      <MobileNav />
+      <TheThemeToggle />
+      <TheMobileNav />
     </div>
   </header>
 </template>
