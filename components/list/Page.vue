@@ -1,6 +1,6 @@
 <template>
   <section class="pb-24">
-    <PageHeader :post="page" />
+    <PostHeader :post="page" />
     <PostContent :post="page"/>
     <ListSection :posts="posts"/>
   </section>
