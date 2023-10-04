@@ -4,7 +4,7 @@
       <p class="inline mr-2">Tags:</p>
       <ul class="inline">
         <li v-for="tag in post.tags" :key="tag" class="inline">
-          <PostTag :text="tag" />
+          <PageTag :text="tag" />
         </li>
       </ul>
     </div>
