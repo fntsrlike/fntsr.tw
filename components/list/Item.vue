@@ -2,26 +2,7 @@
   <article
     class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0"
   >
-    <dl>
-      <dt class="sr-only">Published on</dt>
-      <dd
-        class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400"
-      >
-        <time v-if="item.published_at" dateTime="{{item.published_at}}">
-          {{
-            DateTime.fromISO(item.published_at).toLocal().toFormat('yyyy-LL-dd')
-          }}
-        </time>
-        <time
-          v-if="!item.published_at && item.created_at"
-          dateTime="{{item.created_at}}"
-        >
-          {{
-            DateTime.fromISO(item.created_at).toLocal().toFormat('yyyy-LL-dd')
-          }}
-        </time>
-      </dd>
-    </dl>
+    <ListItemDate :isoDateTime="item.published_at || item.created_at" />
     <div class="space-y-3 xl:col-span-3">
       <div>
         <NuxtLink :href="item._path">
@@ -46,7 +27,6 @@
   </article>
 </template>
 <script setup lang="ts">
-import { DateTime } from 'luxon'
 import { Post } from '@/types/index'
 import { usePost } from '@/composables/usePost'
 
