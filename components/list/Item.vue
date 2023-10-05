@@ -32,7 +32,11 @@ import { usePost } from '@/composables/usePost'
 
 const { isDraft } = usePost()
 
-defineProps<{
+const props = defineProps<{
   item: Post
 }>()
+
+if (props.item.tags === undefined) {
+  props.item.tags = []
+}
 </script>
