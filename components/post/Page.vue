@@ -11,10 +11,8 @@
 </template>
 <script setup lang="ts">
 import { Post } from '@/types/index'
-import { useUtilities } from '@/composables/useUtilities'
+import { isProduction } from '@/libraries/environment'
 import { isPostDraft } from '@/libraries/post'
-
-const { isProduction } = useUtilities()
 
 defineProps<{
   post: Post
