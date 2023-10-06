@@ -11,7 +11,7 @@
         </h1>
       </div>
       <div class="flex max-w-lg flex-wrap">
-        <div v-for="tag in articleTags" :key="tag" class="mt-2 mb-2 mr-5">
+        <div v-for="(count, tag) in tagsRecord" :key="tag" class="mt-2 mb-2 mr-5">
           <PostTag :text="tag" />
           <NuxtLink
             :href="'/tags/' + kebabCase(tag)"
@@ -21,7 +21,7 @@
           tagged
           ${tag}`"
           >
-            ({{ tagsCount[tag] }})
+            ({{ count }})
           </NuxtLink>
         </div>
       </div>
@@ -37,45 +37,22 @@
 </template>
 
 <script setup lang="ts">
+import { Post } from '@/types/index'
 import { kebabCase } from '~/libraries/formater'
 import { fetch, queryTags } from '@/api/queryContent'
 
-const tagsCount = {}
+const postsToTags = (posts: Post[]) => {
+  return posts.map((post) => post.tags).flat().map((tag) => tag.toLowerCase())
+}
 
-// [TODO]: extract to composable
-const flatten = (tagsList, key) => {
-  const _tags = tagsList
-    .map((element) => {
-      let _e = element
-
-      const whenElementIsPost = typeof element === 'object'
-      if (whenElementIsPost) {
-        if (!element[key]) {
-          // eslint-disable-next-line no-console
-          console.log(`[WARN] "${element._path}" has no "${key}" property`)
-          element[key] = []
-        }
-        const tags = element[key]
-        const flattened = flatten(tags)
-        _e = flattened
-      }
-
-      const whenElementIsTag = typeof key === 'undefined'
-      if (whenElementIsTag) {
-        const tag = _e.toLowerCase()
-        tagsCount[tag] = tagsCount[tag] ? tagsCount[tag] + 1 : 1
-        _e = tag
-      }
-      return _e
-    })
-    .flat(1)
-  return _tags
+const tagsToRecord = (tags: string[]) => {
+  return tags.reduce((acc: Record<string, number>, item: string) => {
+    acc[item] = (acc[item] || 0) + 1;
+    return acc;
+  }, {})
 }
 
 const posts = await fetch('tags', () => queryTags())
-
-const flat = [...new Set(flatten(posts.value, 'tags'))]
-const articleTags = flat.filter((tag) => {
-  return typeof tag === 'string' && tag.length > 0
-})
+const tags = postsToTags(posts.value)
+const tagsRecord = tagsToRecord(tags)
 </script>
