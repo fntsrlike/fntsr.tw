@@ -30,7 +30,7 @@ const filteredPosts = computed(() => {
       return false
     }
 
-    const tags = post.tags.filter((tag) => !!tag)
+    const tags = post.tags || []
     const searchContent =
       post.title +
       post.title_en +
