@@ -84,26 +84,18 @@ export default defineNitroPlugin((nitroApp) => {
   }
 
   const wikiLinkRegExp = function (isRender = false) {
-    const regExpSets = {
-      han: /\u4E00-\u9FFF/,         // 中文漢字的 Unicode 範圍
-      hanExtend: /\u3400-\u4DBF/,   // 中文擴展 A 的 Unicode 範圍
-      jpKana: /\u3040-\u30FF/,      // 日文平假名和片假名的 Unicode 範圍
-      krHangul: /\uAC00-\uD7AF/,    // 韓文字母的 Unicode 範圍
-      enCommon: /\w\-./,            // 所有的英文字母、數字、底線字元、破折號、小數點
-      symbol: /%\\\//,              // 百分比字元、斜線與反斜線字元。
-      space: /\s/,                  // 空白字元（如空格和 Tab 字元）
-      angle: /<>/,                  // 角括號
-    }
+    const regExpSets: RegExp[]  = [
+      /\u4E00-\u9FFF/, // han: 中文漢字的 Unicode 範圍
+      /\u3400-\u4DBF/, // hanExtend: 中文擴展 A 的 Unicode 範圍
+      /\u3040-\u30FF/, // jpKana: 日文平假名和片假名的 Unicode 範圍
+      /\uAC00-\uD7AF/, // krHangul: 韓文字母的 Unicode 範圍
+      /\w\-./,         // enCommon: 所有的英文字母、數字、底線字元、破折號、小數點
+      /%\\\//,         // symbol: 百分比字元、斜線與反斜線字元。
+      /\s/,            // space: 空白字元（如空格和 Tab 字元）
+      /<>/,            // angle: 角括號
+    ]
 
-    const pathSets = new RegExp([
-      regExpSets.enCommon.source,
-      regExpSets.symbol.source,
-      regExpSets.angle.source,
-      regExpSets.space.source,
-      regExpSets.han.source,
-      regExpSets.hanExtend.source,
-    ].join('')).source
-
+    const pathSets = regExpSets.map(reg => reg.source).join('')
     const pathPattern = `[${pathSets}]+`
     const aliasPattern = /[^\[\]]+/.source
 
