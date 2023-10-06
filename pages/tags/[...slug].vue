@@ -21,7 +21,7 @@
 </template>
 <script setup>
 import { ref } from 'vue'
-import { DateTime } from 'luxon'
+import { isoToDate } from '@/libraries/datetime'
 import { useQuery } from '@/composables/useQuery'
 
 const route = useRoute()
@@ -43,7 +43,7 @@ const filteredPosts = computed(() => {
       post.title_en +
       post.description +
       post.tags.map((tag) => tag.split(' ').join('-')) +
-      DateTime.fromISO(post.published_at).toLocal().toFormat('yyyy-LL-dd')
+      isoToDate(post.published_at)
     return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
   })
 })

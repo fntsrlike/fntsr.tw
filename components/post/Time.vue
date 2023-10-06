@@ -9,9 +9,7 @@
   </time>
 </template>
 <script setup lang="ts">
-import { useDateTime } from '@/composables/useDateTime'
-
-const { isoToDateTime, isoToDate } = useDateTime()
+import { isoToDateTime, isoToDate } from '@/libraries/datetime'
 
 defineProps<{
   isoDateTime: string | null

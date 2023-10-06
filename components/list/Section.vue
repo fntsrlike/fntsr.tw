@@ -10,9 +10,9 @@
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { DateTime } from 'luxon'
 import { Post } from '@/types/index'
 import { usePost } from '@/composables/usePost'
+import { isoToDate } from '@/libraries/datetime'
 
 const props = defineProps<{
   posts: Post[]
@@ -34,7 +34,7 @@ const filteredPosts = computed(() => {
       post.title_en +
       post.description +
       tags.map((tag: string) => (tag ? tag.split(' ').join('-') : '')) +
-      DateTime.fromISO(post.published_at).toFormat('yyyy-LL-dd')
+      isoToDate(post.published_at)
     return searchContent.toLowerCase().includes(searchValue.value.toLowerCase())
   })
 })

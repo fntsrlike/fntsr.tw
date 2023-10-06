@@ -44,11 +44,9 @@
   </div>
 </template>
 <script setup>
-import { DateTime } from 'luxon'
+import { isoToDateTime } from '@/libraries/datetime'
 
 const config = useAppConfig()
 const { buildTime } = config
-const buildTimeFormat = DateTime.fromISO(buildTime)
-  .toLocal()
-  .toFormat('yyyy-LL-dd HH:mm')
+const buildTimeFormat = isoToDateTime(buildTime)
 </script>

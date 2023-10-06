@@ -12,7 +12,7 @@ const isoToDateTime  = (str: string) => {
 }
 
 
-export const useDateTime = () => ({
+export {
   isoToDate,
   isoToDateTime,
-})
+}

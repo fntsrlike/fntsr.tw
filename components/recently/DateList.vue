@@ -3,7 +3,7 @@
     <h3>{{ title }}</h3>
     <ol>
       <li v-for="post in posts" :key="post._path" class="mb-2 md:mb-0 leading-6 md:leading-7">
-        <span class="block md:inline md:mr-2">{{ DateTime.fromISO(post.created_at).toLocal().toFormat('yyyy-LL-dd') }}</span>
+        <span class="block md:inline md:mr-2">{{ isoToDate(post.created_at) }}</span>
         <span class="md:mb-0  "><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></span>
       </li>
     </ol>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { DateTime } from 'luxon'
+import { isoToDate } from '@/libraries/datetime'
 import { useQuery } from '@/composables/useQuery'
 
 const { queryRecentlyPosts } = useQuery()

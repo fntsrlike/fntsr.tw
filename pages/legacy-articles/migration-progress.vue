@@ -25,20 +25,12 @@
           >
             <td>{{ index + 1 }}</td>
             <td>
-              {{
-                DateTime.fromISO(article.created_at)
-                  .toLocal()
-                  .toFormat('yyyy-LL-dd')
-              }}
+              {{ isoToDate(article.created_at) }}
             </td>
             <td>
               <NuxtLink
                 v-if="article.published_at"
-                :href="`/${article.direct_to}/${DateTime.fromISO(
-                  article.created_at
-                )
-                  .toLocal()
-                  .toFormat('yyyy-LL-dd')}-${article.slug}`"
+                :href="`/${article.direct_to}/${isoToDate(article.created_at)}-${article.slug}`"
                 >{{ article.title }}</NuxtLink
               >
               <span v-else>
@@ -53,7 +45,7 @@
   </article>
 </template>
 <script setup>
-import { DateTime } from 'luxon'
+import { isoToDate } from '@/libraries/datetime'
 
 const { data } = await useAsyncData(() =>
   queryContent('legacy-articles').sort({ created_at: -1 }).find()
