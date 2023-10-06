@@ -38,6 +38,7 @@
 
 <script setup>
 import { kebabCase } from '~/libraries/formater'
+import { fetch, queryTags } from '@/api/queryContent'
 
 const tagsCount = {}
 
@@ -71,15 +72,9 @@ const flatten = (tagsList, key) => {
   return _tags
 }
 
-const { data } = await useAsyncData('tags', () =>
-  queryContent('/')
-    .only(['tags'])
-    .where({ tags: { $exists: true } })
-    .where({ published_at: { $ne: null } })
-    .find()
-)
+const posts = await fetch('tags', () => queryTags())
 
-const flat = [...new Set(flatten(data.value, 'tags'))]
+const flat = [...new Set(flatten(posts.value, 'tags'))]
 const articleTags = flat.filter((tag) => {
   return typeof tag === 'string' && tag.length > 0
 })

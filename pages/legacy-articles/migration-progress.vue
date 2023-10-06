@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(article, index) in data"
+            v-for="(article, index) in posts"
             :key="article.slug"
             :class="
               article.published_at ? '' : 'text-gray-400 dark:text-gray-500'
@@ -46,10 +46,9 @@
 </template>
 <script setup>
 import { isoToDate } from '@/libraries/datetime'
+import { fetch, queryLegacyArticles } from '@/api/queryContent'
 
-const { data } = await useAsyncData(() =>
-  queryContent('legacy-articles').sort({ created_at: -1 }).find()
-)
+const posts = await fetch('legacies', () => queryLegacyArticles())
 
 const getStatus = (article) => {
   return article.published_at ? '已發表' : '待整理'

@@ -16,10 +16,8 @@
   </section>
 </template>
 
-<script setup>
-import { useQuery } from '@/composables/useQuery'
-
-const { queryRecentlyPosts } = useQuery()
+<script setup lang="ts">
+import { fetch, queryPostsRecently } from '@/api/queryContent'
 
 const props = defineProps({
   title: {
@@ -36,5 +34,5 @@ const props = defineProps({
   },
 })
 
-const posts = await queryRecentlyPosts(props.type, props.count)
+const posts = await fetch(`recently-${props.type}`, () => queryPostsRecently(props.type, props.count))
 </script>

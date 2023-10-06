@@ -22,16 +22,15 @@
 <script setup>
 import { ref } from 'vue'
 import { isoToDate } from '@/libraries/datetime'
-import { useQuery } from '@/composables/useQuery'
+import { fetch, queryPostsByTag } from '@/api/queryContent'
 
 const route = useRoute()
 const searchValue = ref('')
 const tag = route.params.slug.toString()
 
-const { queryPostsByTag } = useQuery()
-const { data } = await useAsyncData(() => queryPostsByTag(tag))
+const posts = await fetch(`tag-${tag}`,() => queryPostsByTag(tag))
 
-const tagPosts = data.value.filter((post) => {
+const tagPosts = posts.value.filter((post) => {
   const tags = post.tags.map((tag) => tag.split(' ').join('-').toLowerCase())
   return tags.includes(tag)
 })

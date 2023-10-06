@@ -1,16 +1,12 @@
 <template>
   <ContentDoc v-slot="{ doc }">
-    <ListPage :page="doc" :posts="data" />
+    <ListPage :page="doc" :posts="posts" />
   </ContentDoc>
 </template>
-<script setup>
+<script setup lang="ts">
+import { fetch, queryPosts } from '@/api/queryContent'
+
 const route = useRoute()
 const slug = route.fullPath
-
-const { data } = await useAsyncData(() =>
-  queryContent(slug)
-    .where({ slug: { $ne: slug }, _file: { $not: { $contains: 'index' } } })
-    .sort({ created_at: -1, published_at: -1 })
-    .find()
-)
+const posts = await fetch(`${slug}-list`, () => queryPosts(slug))
 </script>

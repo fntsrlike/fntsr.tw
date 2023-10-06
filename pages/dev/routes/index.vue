@@ -15,6 +15,8 @@
 </template>
 
 <script setup>
+import { fetch, queryContentList } from '@/api/queryContent'
+
 const routeMap = []
 const router = useRouter()
 router.options.routes
@@ -28,14 +30,9 @@ router.options.routes
 })
 routeMap.sort((obj1, obj2) => obj1.path.localeCompare(obj2.path))
 
+const posts = await fetch('routeContent', () => queryContentList())
 
-const { data } = await useAsyncData('home', () =>
-  queryContent('/')
-    .sort({ _source: 1, _path: 1 })
-    .only(['_source', '_path', 'title', '_file'])
-    .find()
-)
-const contentMap = data.value.map((content) => {
+const contentMap = posts.value.map((content) => {
   let path = content._file.split('/').slice(0, -1).join('/')
   path = path ? `/${path}/` : '/'
 
