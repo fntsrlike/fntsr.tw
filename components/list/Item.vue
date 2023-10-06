@@ -10,7 +10,7 @@
             class="text-xl font-bold leading-8 tracking-tight text-gray-900 dark:text-gray-100"
           >
             {{ item.title }}
-            <DraftBadge v-if="isDraft(item)"></DraftBadge>
+            <DraftBadge v-if="isPostDraft(item)"></DraftBadge>
           </h3>
           <p class="text-gray-800 dark:text-gray-200">
             {{ item.title_en }}
@@ -28,9 +28,7 @@
 </template>
 <script setup lang="ts">
 import { Post } from '@/types/index'
-import { usePost } from '@/composables/usePost'
-
-const { isDraft } = usePost()
+import { isPostDraft } from '@/libraries/post'
 
 const props = defineProps<{
   item: Post

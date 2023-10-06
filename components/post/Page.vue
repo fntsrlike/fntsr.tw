@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isProduction() && isDraft(post)">
+  <div v-if="isProduction() && isPostDraft(post)">
     <p>Haven't published.</p>
     <p>back to <NuxtLink to="/">index</NuxtLink>.</p>
   </div>
@@ -11,11 +11,10 @@
 </template>
 <script setup lang="ts">
 import { Post } from '@/types/index'
-import { usePost } from '@/composables/usePost'
 import { useUtilities } from '@/composables/useUtilities'
+import { isPostDraft } from '@/libraries/post'
 
 const { isProduction } = useUtilities()
-const { isDraft } = usePost()
 
 defineProps<{
   post: Post

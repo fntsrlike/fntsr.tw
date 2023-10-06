@@ -11,20 +11,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Post } from '@/types/index'
-import { usePost } from '@/composables/usePost'
+import { isPostDraft } from '@/libraries/post'
 import { isoToDate } from '@/libraries/datetime'
 
 const props = defineProps<{
   posts: Post[]
 }>()
 
-const { isDraft } = usePost()
 const searchValue = ref('')
 
 const filteredPosts = computed(() => {
   return props.posts.filter((post: Post) => {
     const isProduct = !process.dev
-    if (isProduct && isDraft(post)) {
+    if (isProduct && isPostDraft(post) ) {
       return false
     }
 
