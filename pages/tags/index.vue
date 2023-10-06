@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { kebabCase, toLower } from 'lodash-es/string'
+import { kebabCase } from '~/libraries/formater'
 
 const tagsCount = {}
 
@@ -61,7 +61,7 @@ const flatten = (tagsList, key) => {
 
       const whenElementIsTag = typeof key === 'undefined'
       if (whenElementIsTag) {
-        const tag = toLower(_e)
+        const tag = _e.toLowerCase()
         tagsCount[tag] = tagsCount[tag] ? tagsCount[tag] + 1 : 1
         _e = tag
       }

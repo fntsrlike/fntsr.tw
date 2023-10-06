@@ -6,8 +6,8 @@
     {{ text.split(' ').join('-') }}
   </NuxtLink>
 </template>
-<script setup>
-import { kebabCase } from 'lodash-es/string'
+<script setup lang="ts">
+import { kebabCase } from '~/libraries/formater'
 
 defineProps({
   text: {
