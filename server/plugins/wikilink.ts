@@ -12,14 +12,19 @@ export default defineNitroPlugin((nitroApp) => {
       isInCodeBlock = isCodeBlockSyntax ? !isInCodeBlock : isInCodeBlock
 
       if (!isInCodeBlock) {
-        line = convertFilePath(line)
-        line = convertRenderMarkdown(line)
-        line = convertLinkMarkdown(line)
+        line = convertedLine(line)
       }
       return line
     })
 
     return convertedLines.join('\n')
+  }
+
+  function convertedLine(line: string) {
+    line = convertFilePath(line)
+    line = convertRenderMarkdown(line)
+    line = convertLinkMarkdown(line)
+    return line
   }
 
   function convertFilePath(line: string) {
