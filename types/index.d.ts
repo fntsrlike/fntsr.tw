@@ -1,6 +1,5 @@
 import { ParsedContent } from "@nuxt/content/dist/runtime/types"
-
-interface Post extends ParsedContent {
+interface PostContent {
   title: string
   title_en: string
   slug: string
@@ -13,6 +12,7 @@ interface Post extends ParsedContent {
   draft: boolean
 }
 
+interface Post extends ParsedContent, PostContent {}
 interface ToC {
   children: ToC[]
   depth: number
@@ -20,4 +20,4 @@ interface ToC {
   text: string
 }
 
-export {Post, ToC}
+export { PostContent, Post, ToC }
