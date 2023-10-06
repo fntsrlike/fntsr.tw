@@ -43,7 +43,7 @@
     </section>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import { isoToDateTime } from '@/libraries/datetime'
 
 const config = useAppConfig()

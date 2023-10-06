@@ -23,7 +23,7 @@
     </svg>
   </button>
 </template>
-<script setup>
+<script setup lang="ts">
 const colorMode = useColorMode()
 
 const toggle = () => {

@@ -13,34 +13,35 @@
     </div>
 </div>
 </template>
-
-<script setup>
+<script setup lang="ts">
 import { fetch, queryContentList } from '@/api/queryContent'
+import { Post, Route } from '@/types/index'
 
-const routeMap = []
+const routeMap = [] as Route[]
 const router = useRouter()
 router.options.routes
-  // .filter((route) => !route.path.includes('/:slug(.*)*'))
   .forEach((route) => {
     routeMap.push({
+      id: route.path,
       source: 'page',
       path: route.path,
-      name: route.name,
+      name: route.name?.toString(),
     })
 })
 routeMap.sort((obj1, obj2) => obj1.path.localeCompare(obj2.path))
 
 const posts = await fetch('routeContent', () => queryContentList())
 
-const contentMap = posts.value.map((content) => {
-  let path = content._file.split('/').slice(0, -1).join('/')
+const contentMap = posts.value.map((content: Post) => {
+  let path = content._file?.split('/').slice(0, -1).join('/')
   path = path ? `/${path}/` : '/'
 
   return {
+    id: content._path,
     source: content._source,
     path: content._path,
     name: content.title,
-  }
+  } as Route
 })
 
 </script>

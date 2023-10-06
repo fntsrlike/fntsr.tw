@@ -1,6 +1,6 @@
 <template>
   <main class="divide-y divide-gray-200 dark:divide-gray-700">
-    <SearchBar v-model="searchValue" placeholder-text="Search announce" class="pb-8"/>
+    <SearchBar :keyword="searchValue" @changeKeyword="changeKeyword" placeholder-text="Search announce" class="pb-8"/>
     <ul>
       <li v-for="item in filteredPosts" :key="item._path" class="py-4">
         <ListItem :item="item" />
@@ -19,6 +19,9 @@ const props = defineProps<{
 }>()
 
 const searchValue = ref('')
+const changeKeyword = (keyword: string) => {
+  searchValue.value = keyword
+}
 
 const filteredPosts = computed(() => {
   return props.posts.filter((post: Post) => {

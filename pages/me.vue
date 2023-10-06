@@ -40,7 +40,7 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
 import siteMetadata from '@/_write/siteMetadata'
 
 definePageMeta({

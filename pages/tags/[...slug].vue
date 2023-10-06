@@ -19,7 +19,7 @@
     </div>
   </section>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { isoToDate } from '@/libraries/datetime'
 import { fetch, queryPostsByTag } from '@/api/queryContent'

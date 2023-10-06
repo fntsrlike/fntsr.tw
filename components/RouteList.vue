@@ -37,10 +37,12 @@
     </div>
   </div>
 </template>
-<script setup>
+<script setup lang="ts">
+import { Route } from '@/types/index'
+
 defineProps({
   data: {
-    type: Array,
+    type: Array<Route>,
     required: true,
   },
 })

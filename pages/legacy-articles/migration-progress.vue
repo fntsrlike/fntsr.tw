@@ -44,13 +44,14 @@
     </div>
   </article>
 </template>
-<script setup>
+<script setup lang="ts">
+import { Post } from '@/types/index'
 import { isoToDate } from '@/libraries/datetime'
 import { fetch, queryLegacyArticles } from '@/api/queryContent'
 
 const posts = await fetch('legacies', () => queryLegacyArticles())
 
-const getStatus = (article) => {
+const getStatus = (article : Post) => {
   return article.published_at ? '已發表' : '待整理'
 }
 </script>

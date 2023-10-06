@@ -2,7 +2,7 @@
   <slot />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import mermaid from 'mermaid'
 mermaid.initialize({
   startOnLoad: true,

@@ -1,5 +1,5 @@
 import { Ref } from 'vue'
-import { Post } from 'types/index'
+import { Post } from '@/types/index'
 
 import {
   isDraft,

@@ -3,12 +3,12 @@
     <label>
       <span class="sr-only">{{ placeholderText }}</span>
       <input
-        :v-model="modelValue"
-        :aria-label="placeholderText"
         type="text"
-        :placeholder="placeholderText"
         class="block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :aria-label="placeholderText"
+        :placeholder="placeholderText"
+        :value="keyword"
+        @input="event => emit('changeKeyword', (event.target as HTMLInputElement).value)"
       />
     </label>
     <svg
@@ -27,9 +27,9 @@
     </svg>
   </div>
 </template>
-<script setup>
-defineProps({
-  modelValue: {
+<script setup lang="ts">
+const props = defineProps({
+  keyword: {
     type: String,
     default: '',
   },
@@ -39,5 +39,7 @@ defineProps({
   },
 })
 
-defineEmits(['update:modelValue'])
+const emit = defineEmits<{
+  (e: 'changeKeyword', value: string): void
+}>()
 </script>

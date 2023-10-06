@@ -27,7 +27,7 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import siteMetadata from '@/_write/siteMetadata'
 import headerNavLinks from '@/_write/headerNavLinks'
 </script>

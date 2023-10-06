@@ -15,7 +15,7 @@
   </a>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -33,19 +33,19 @@ const props = defineProps({
   },
 })
 
-const components = {
-  email: 'mdi:email',
-  github: 'mdi:github',
-  facebook: 'mdi:facebook',
-  youtube: 'mdi:youtube',
-  linkedin: 'mdi:linkedin',
-  twitter: 'mdi:twitter-circle',
-  mastodon: 'mdi:mastodon',
-  hourglass: 'ic:baseline-hourglass-top',
-}
+const components = new Map([
+  ['email', 'mdi:email'],
+  ['github', 'mdi:github'],
+  ['facebook', 'mdi:facebook'],
+  ['youtube', 'mdi:youtube'],
+  ['linkedin', 'mdi:linkedin'],
+  ['twitter', 'mdi:twitter-circle'],
+  ['mastodon', 'mdi:mastodon'],
+  ['hourglass', 'ic:baseline-hourglass-top'],
+])
 
 const isValid = ref(true)
-const iconCode = components[props.kind]
+const iconCode = components.get(props.kind)
 const mailRex = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/
 
 if (

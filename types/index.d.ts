@@ -20,4 +20,11 @@ interface ToC {
   text: string
 }
 
-export { PostContent, Post, ToC }
+interface Route {
+  id: string
+  source: string
+  path: string
+  name: string | undefined
+}
+
+export { PostContent, Post, ToC, Route }
