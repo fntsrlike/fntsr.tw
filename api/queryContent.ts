@@ -62,8 +62,8 @@ const queryTags = () => {
 const fetch = async (key: string, queryFunction: Function ) => {
   const { data, error } = await useAsyncData(key,  () => queryFunction())
 
-  if (error) {
-    console.log('Fetch failed:', error)
+  if (error.value) {
+    console.log('Fetch failed:', error.value)
   }
 
   const posts = data as Ref<Post[]>
