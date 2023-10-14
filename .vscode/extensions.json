@@ -15,6 +15,7 @@
         "eamodio.gitlens",
         "humao.rest-client",
         "octref.vetur",
-        "sdras.vue-vscode-snippets"
+        "sdras.vue-vscode-snippets",
+        "antfu.iconify"
     ]
 }
