@@ -45,7 +45,7 @@ const components = new Map([
 ])
 
 const isValid = ref(true)
-const iconCode = components.get(props.kind)
+const iconCode = components.get(props.kind) || ''
 const mailRex = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/
 
 if (
