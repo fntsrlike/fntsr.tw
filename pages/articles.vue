@@ -1,9 +1,7 @@
 <template>
   <ListLayout>
     <ListHeader>
-      <PageTitle>
-        {{ title }}
-      </PageTitle>
+      <PageTitle> Articles </PageTitle>
       <SearchBar v-model="searchValue" placeholder-text="Search articles" />
     </ListHeader>
     <ul>
@@ -18,7 +16,6 @@ import { ref } from 'vue'
 import { DateTime } from 'luxon'
 
 const { data } = await useAsyncData(() => queryContent('articles').find())
-const title = 'Articles'
 const searchValue = ref('')
 const posts = data.value
 
