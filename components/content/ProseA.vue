@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :href="href" :target="theTarget">
+  <NuxtLink class="dark:text-white" :href="href" :target="theTarget">
     <slot />
     <NewWindowIcon v-if="isOutGoingLink" :size="3" class="ml-px" />
   </NuxtLink>

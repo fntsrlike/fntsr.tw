@@ -4,7 +4,7 @@
     <ol>
       <li v-for="post in posts" :key="post._path" class="mb-2 md:mb-0 leading-6 md:leading-7">
         <span class="block md:inline md:mr-2">{{ isoToDate(post.created_at) }}</span>
-        <span class="md:mb-0  "><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></span>
+        <span class="md:mb-0 dark:text-white"><NuxtLink :to="post._path">{{ post.title }}</NuxtLink></span>
       </li>
     </ol>
   </section>

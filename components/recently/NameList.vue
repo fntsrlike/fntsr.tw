@@ -8,7 +8,7 @@
           :key="post._path"
           class="md:inline-block md:px-0"
         >
-          <NuxtLink :to="post._path"> {{ post.title }}</NuxtLink
+          <NuxtLink :to="post._path" class="text-white"> {{ post.title }}</NuxtLink
           ><span v-if="index + 1 < posts.length">、</span>
         </li>
       </ul>
