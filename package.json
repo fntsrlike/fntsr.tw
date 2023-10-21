@@ -21,6 +21,8 @@
     "@tailwindcss/typography": "^0.5.8",
     "@types/lodash-es": "^4.17.9",
     "@types/luxon": "^3.3.0",
+    "@unocss/nuxt": "^0.56.5",
+    "@unocss/reset": "^0.56.5",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
