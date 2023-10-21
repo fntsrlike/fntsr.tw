@@ -15,12 +15,12 @@
 import { ref } from 'vue'
 import { DateTime } from 'luxon'
 
-const { data } = await useAsyncData(() => queryContent('articles').find())
 const searchValue = ref('')
-const posts = data.value
+
+const { data } = await useAsyncData(() => queryContent('articles').find())
 
 const filteredBlogPosts = computed(() => {
-  return posts.filter((post) => {
+  return data.value.filter((post) => {
     const searchContent =
       post.title +
       post.title_en +
