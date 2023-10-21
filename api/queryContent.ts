@@ -26,6 +26,7 @@ const queryPostsRecently = (type: string, count: number) => {
   return queryContent(type)
     .only(['title', 'title_en', 'created_at', 'published_at', '_path'])
     .where(isNotDraft())
+    .where(excludeIndex(type))
     .limit(count)
     .sort({ created_at: -1, published_at: -1 })
     .find()

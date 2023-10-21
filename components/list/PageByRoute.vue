@@ -7,6 +7,6 @@
 import { fetch, queryPosts } from '@/api/queryContent'
 
 const route = useRoute()
-const slug = route.fullPath
+const slug = route.name?.toString()
 const posts = await fetch(`${slug}-list`, () => queryPosts(slug))
 </script>
